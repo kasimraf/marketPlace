@@ -1,0 +1,17 @@
+.type {
+  display: flex;
+  justify-content: center;
+  background-color: #eff3f6;
+  border-radius: 8px;
+  box-sizing: border-box;
+  cursor: pointer;
+  height: 100%;
+  padding: 8px;
+  transition: background-color .25s ease-in;
+  width: 126px;
+  margin: 5px;
+  &:hover {
+    background-color: darken(#eff3f6, 10%);
+    cursor: pointer;
+  }
+}

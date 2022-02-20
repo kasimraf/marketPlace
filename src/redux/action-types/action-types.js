@@ -1,0 +1,10 @@
+export const Types = {
+    //Markets
+    GET_MARKETS_TYPES: 'GET_MARKETS_TYPES',
+    GET_RANDOM_MARKETS: 'GET_RANDOM_MARKETS',
+    GET_MAIN_MARKETS: 'GET_MAIN_MARKETS',
+
+    //Auth
+    AUTH_TRUE: 'AUTH_TRUE',
+    AUTH_TOKEN_ID: 'AUTH_TOKEN_ID'
+};
