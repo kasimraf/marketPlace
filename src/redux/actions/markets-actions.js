@@ -14,14 +14,15 @@ export const getMarketsTypesAction = (token) => (dispatch) => {
     })
 };
 
-export const getMainMarketsAction = () => (dispatch) => {
-    getMainMarkets()
+export const getMainMarketsAction = (token) => (dispatch) => {
+    getMainMarkets(token)
         .then(response => {
             if (response.ok) {
                 return response.json();
             }
         }).then(json => {
-        dispatch({type: Types.GET_MAIN_MARKETS, payload: json});
+        console.log(json.content)
+        dispatch({type: Types.GET_MAIN_MARKETS, payload: json.content});
     }).catch(e => {
         console.log('Не удалось подключиться к серверу')
     })

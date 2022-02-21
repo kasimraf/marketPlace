@@ -15,9 +15,9 @@ const Markets = () => {
                 </div>
             </div>
             <MarketTypes />
-            {/*<div className={styles.markets}>*/}
-            {/*    <MainMarkets />*/}
-            {/*</div>*/}
+            <div className={styles.markets}>
+                <MainMarkets />
+            </div>
         </div>
     )
 }

@@ -8,18 +8,20 @@ const MainMarketsItem = (props) => {
         <div className={styles.market}>
             <div className={styles.titleRow}>
                 <div className={styles.photo}>
-                    <img src="https://main-cdn.sbermegamarket.ru/big1/hlr-system/1634864/100023689157b0.jpg" alt=""/>
+                    <img src={props.market.imageUrl} alt=""/>
                 </div>
                 <div className={styles.titleBlock}>
                     <div className={styles.title}>
                         <h4>{props.market.name}</h4>
                     </div>
                     <div className={styles.subTitle}>
-                        Небольшое описание
+                        {props.market.description}
+                    </div>
+                    <div className={styles.marketType}>
+                        {props.market.marketType}
                     </div>
                 </div>
             </div>
-            <MainMarketItemGoods goods={props.market.goods}/>
         </div>
     );
 };

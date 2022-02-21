@@ -3,8 +3,6 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import {connect} from "react-redux";
-import {getMainMarketsAction} from "../../redux/actions/markets-actions";
-import {type} from "@testing-library/user-event/dist/type";
 import {Types} from "../../redux/action-types/action-types";
 
 

@@ -23,11 +23,12 @@ export function addMarket(market, token) {
     })
 }
 
-export function getMainMarkets() {
-    return fetch(`${Url}:${Port}/api/${Version}/market/owner/1`, {
+export function getMainMarkets(token) {
+    return fetch(`${Url}:${Port}/api/${Version}/market?page=0&size=20`, {
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
         },
         method: "GET",
     })
