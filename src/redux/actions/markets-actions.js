@@ -1,4 +1,10 @@
-import {addMarket, getMainMarkets, getMarketsTypes} from "../../services/http-services-markets";
+import {
+    addMarket,
+    getMainMarkets,
+    getMarketData,
+    getMarketGoods,
+    getMarketsTypes
+} from "../../services/http-services-markets";
 import {Types} from "../action-types/action-types";
 
 export const getMarketsTypesAction = (token) => (dispatch) => {
@@ -41,5 +47,33 @@ export const addMarketAction = (marketData, token) => (dispatch) => {
                 console.log('Магазин успешно добавлен')
             }
         })
+};
+
+export const getMarketPageDataAction = (token, marketId) => (dispatch) => {
+    getMarketData(token, marketId)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+        }).then(json => {
+        dispatch({type: Types.GET_MARKET_PAGE_DATA, payload: json});
+    }).catch(e => {
+        console.log('Не удалось подключиться к серверу')
+    })
+};
+
+
+
+export const getMarketPageGoodsAction = (token, marketId) => (dispatch) => {
+    getMarketGoods(token, marketId)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+        }).then(json => {
+        dispatch({type: Types.GET_MARKET_PAGE_GOODS, payload: json});
+    }).catch(e => {
+        console.log('Не удалось подключиться к серверу')
+    })
 };
 

@@ -2,7 +2,9 @@ import {Types} from "../../action-types/action-types";
 
 const initialState = {
     types: [],
-    mainMarkets: []
+    mainMarkets: [],
+    marketPageData: [],
+    marketPageGoods: []
 };
 
 export const markets = (state = initialState, action) => {
@@ -23,6 +25,18 @@ export const markets = (state = initialState, action) => {
             return {
                 ...state,
                 mainMarkets: action.payload
+            }
+        }
+        case Types.GET_MARKET_PAGE_DATA: {
+            return {
+                ...state,
+                marketPageData: action.payload
+            }
+        }
+        case Types.GET_MARKET_PAGE_GOODS: {
+            return {
+                ...state,
+                marketPageGoods: action.payload
             }
         }
         default: {

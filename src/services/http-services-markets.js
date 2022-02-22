@@ -33,3 +33,25 @@ export function getMainMarkets(token) {
         method: "GET",
     })
 }
+
+export function getMarketData(token, marketId) {
+    return fetch(`${Url}:${Port}/api/${Version}/market/${marketId}`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        method: "GET",
+    })
+}
+
+export function getMarketGoods(token, marketId) {
+    return fetch(`${Url}:${Port}/api/${Version}/goods/market/${marketId}`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        method: "GET",
+    })
+}
