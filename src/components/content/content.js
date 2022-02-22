@@ -4,6 +4,7 @@ import {Route, Routes} from "react-router-dom";
 import Markets from "./markets/markets";
 import Goods from "./goods/goods";
 import AddMarket from "./markets/add-market/add-market";
+import MarketPage from "./markets/market-page/market-page";
 
 const Content = () => {
     return (
@@ -12,6 +13,7 @@ const Content = () => {
                 <Route path="/markets" element={<Markets />} />
                 <Route path="/goods" element={<Goods />} />
                 <Route path="/markets/addMarket" element={<AddMarket />} />
+                <Route path="/markets/:id" element={<MarketPage />} />
             </Routes>
         </div>
     )
