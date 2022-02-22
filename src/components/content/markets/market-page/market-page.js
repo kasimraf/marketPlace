@@ -63,7 +63,7 @@ const MarketPage = (props) => {
                     {props.goods.map((good, index) => {
                         return (
                             <div>
-                                {good.name}
+                                {good.name} ептэ
                             </div>
                         )
                     })}
