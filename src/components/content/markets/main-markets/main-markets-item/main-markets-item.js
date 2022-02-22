@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './main-markets-item.module.scss'
-import MainMarketItemGoods from "./main-market-item-goods/main-market-item-goods";
 
 const MainMarketsItem = (props) => {
 
