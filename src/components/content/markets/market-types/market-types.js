@@ -7,7 +7,7 @@ import MarketTypesItem from "./market-types-item/market-types-item";
 const MarketTypes = (props) => {
 
     useEffect(() => {
-        props.getMarketTypes(props.token)
+        props.getMarketTypes()
     }, []);
 
     return (
@@ -22,11 +22,10 @@ const MarketTypes = (props) => {
 export default connect(
     state => ({
         types: state.markets.types,
-        token: state.auth.tokenId
     }),
     dispatch => ({
-        getMarketTypes: (token) => {
-            dispatch(getMarketsTypesAction(token))
+        getMarketTypes: () => {
+            dispatch(getMarketsTypesAction())
         }
     })
 )(MarketTypes)

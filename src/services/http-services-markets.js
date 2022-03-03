@@ -2,12 +2,9 @@ const Url = "http://localhost";
 const Port = "8080";
 const Version = 'v1'
 
-export function getMarketsTypes(token) {
+export function getMarketsTypes() {
     return fetch(`${Url}:${Port}/api/${Version}/market/type`, {
-        method: 'GET',
-        headers: {
-            'Authorization': 'Bearer ' + token
-        },
+        method: 'GET'
     })
 }
 
@@ -23,35 +20,21 @@ export function addMarket(market, token) {
     })
 }
 
-export function getMainMarkets(token) {
+export function getMainMarkets() {
     return fetch(`${Url}:${Port}/api/${Version}/market?page=0&size=20`, {
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token
-        },
-        method: "GET",
+        method: "GET"
     })
 }
 
-export function getMarketData(token, marketId) {
+export function getMarketData(marketId) {
     return fetch(`${Url}:${Port}/api/${Version}/market/${marketId}`, {
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token
-        },
         method: "GET",
     })
 }
 
-export function getMarketGoods(token, marketId) {
+export function getMarketGoods(marketId) {
+    debugger
     return fetch(`${Url}:${Port}/api/${Version}/goods/market/${marketId}`, {
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token
-        },
         method: "GET",
     })
 }

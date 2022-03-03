@@ -1,17 +1,16 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useLayoutEffect} from 'react';
 import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
-import {getMarketPageDataAction, getMarketPageGoodsAction} from "../../../../redux/actions/markets-actions";
+import {getMarketPageDataAction} from "../../../../redux/actions/markets-actions";
 import styles from './market-page.module.scss'
-import MarketTypesItem from "../market-types/market-types-item/market-types-item";
+import MarketPageGoods from "./market-page-goods";
 
 const MarketPage = (props) => {
 
     const params = useParams()
 
-    useEffect(() => {
-        props.getData(props.token, params.id);
-        props.getGoods(props.token, params.id);
+    useLayoutEffect(() => {
+        props.getData(params.id);
     }, []);
 
     return (
@@ -60,12 +59,8 @@ const MarketPage = (props) => {
             <div className={styles.goods}>
                 <div className={styles.blockName}>
                     <h2>Cписок товаров</h2>
-                    {props.goods.map((good, index) => {
-                        return (
-                            <div>
-                                {good.name} ептэ
-                            </div>
-                        )
+                    {props.goods.map((good) => {
+                        return <MarketPageGoods  good={good}/>
                     })}
                 </div>
             </div>
@@ -75,16 +70,12 @@ const MarketPage = (props) => {
 
 export default connect(
     state => ({
-        token: state.auth.tokenId,
         market: state.markets.marketPageData,
-        goods: state.markets.marketPageGoods.content
+        goods: state.markets.marketPageGoods
     }),
     dispatch => ({
-        getData: (token, marketId) => {
-            dispatch(getMarketPageDataAction(token, marketId))
-        },
-        getGoods: (token, marketId) => {
-            dispatch(getMarketPageGoodsAction(token, marketId))
+        getData: (marketId) => {
+            dispatch(getMarketPageDataAction(marketId))
         }
     })
 )(MarketPage);

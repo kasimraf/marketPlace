@@ -9,14 +9,14 @@ import {connect} from "react-redux";
 const App = (props) => {
     return (
         <div className={css.app}>
-            {!props.authStatus
-                ? <Auth/>
-                : <div>
+            {/*{!props.authStatus*/}
+            {/*    ? <Auth/>*/}
+            {/*    : <div>*/}
                     <Header />
                     <Content />
                     <Footer />
-                </div>
-            }
+            {/*    </div>*/}
+            {/*}*/}
         </div>
     )
 }

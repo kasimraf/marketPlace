@@ -7,7 +7,7 @@ import styles from './main-market.module.scss'
 const MainMarkets = (props) => {
 
     useEffect(() => {
-        props.getMainMarkets(props.token)
+        props.getMainMarkets()
     }, []);
 
     return (
@@ -22,11 +22,10 @@ const MainMarkets = (props) => {
 export default connect(
     state => ({
         markets: state.markets.mainMarkets,
-        token: state.auth.tokenId
     }),
     dispatch => ({
-        getMainMarkets: (token) => {
-            dispatch(getMainMarketsAction(token))
+        getMainMarkets: () => {
+            dispatch(getMainMarketsAction())
         }
     })
 )(MainMarkets);

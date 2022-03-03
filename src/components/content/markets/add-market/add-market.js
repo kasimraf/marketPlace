@@ -11,7 +11,7 @@ const AddMarket = (props) => {
     let newMarketImageUrl = React.createRef();
 
     useEffect(() => {
-        props.getMarketTypes(props.token)
+        props.getMarketTypes()
     }, []);
 
     let addMarket = () => {
@@ -20,7 +20,6 @@ const AddMarket = (props) => {
             type: newMarketType.current.value,
             imageUrl: newMarketImageUrl.current.value
         }
-        console.log(marketData)
         props.addMarket(marketData, props.token)
     }
     return (
@@ -35,7 +34,7 @@ const AddMarket = (props) => {
             </div>
             <div className={styles.types}>
                 <select ref={newMarketType}>
-                    {props.types.map((type, index) => <option value={type}>{type}</option> )}
+                    {props.types.map((type, index) => <option value={type}>{type.name}</option> )}
                 </select>
             </div>
             <div className={styles.addButton}>
@@ -48,11 +47,10 @@ const AddMarket = (props) => {
 export default connect(
     state => ({
         types: state.markets.types,
-        token: state.auth.tokenId
     }),
     dispatch => ({
-        getMarketTypes: (token) => {
-            dispatch(getMarketsTypesAction(token))
+        getMarketTypes: () => {
+            dispatch(getMarketsTypesAction())
         },
         addMarket: (marketData, token) => {
             dispatch(addMarketAction(marketData, token))

@@ -7,8 +7,8 @@ import {
 } from "../../services/http-services-markets";
 import {Types} from "../action-types/action-types";
 
-export const getMarketsTypesAction = (token) => (dispatch) => {
-    getMarketsTypes(token)
+export const getMarketsTypesAction = () => (dispatch) => {
+    getMarketsTypes()
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -20,8 +20,8 @@ export const getMarketsTypesAction = (token) => (dispatch) => {
     })
 };
 
-export const getMainMarketsAction = (token) => (dispatch) => {
-    getMainMarkets(token)
+export const getMainMarketsAction = () => (dispatch) => {
+    getMainMarkets()
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -49,8 +49,8 @@ export const addMarketAction = (marketData, token) => (dispatch) => {
         })
 };
 
-export const getMarketPageDataAction = (token, marketId) => (dispatch) => {
-    getMarketData(token, marketId)
+export const getMarketPageDataAction = (marketId) => (dispatch) => {
+    getMarketData(marketId)
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -60,18 +60,13 @@ export const getMarketPageDataAction = (token, marketId) => (dispatch) => {
     }).catch(e => {
         console.log('Не удалось подключиться к серверу')
     })
-};
-
-
-
-export const getMarketPageGoodsAction = (token, marketId) => (dispatch) => {
-    getMarketGoods(token, marketId)
+    getMarketGoods(marketId)
         .then(response => {
             if (response.ok) {
                 return response.json();
             }
         }).then(json => {
-        dispatch({type: Types.GET_MARKET_PAGE_GOODS, payload: json});
+        dispatch({type: Types.GET_MARKET_PAGE_GOODS, payload: json.content});
     }).catch(e => {
         console.log('Не удалось подключиться к серверу')
     })
