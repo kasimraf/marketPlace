@@ -1,0 +1,14 @@
+const Url = "http://localhost";
+const Port = "8080";
+const Version = 'v1'
+
+export function getGoodsTypes() {
+    return fetch(`${Url}:${Port}/api/${Version}/goods/type`, {
+        method: 'GET'
+    })
+}
+export function getGoods() {
+    return fetch(`${Url}:${Port}/api/${Version}/goods/type/1`, {
+        method: "GET"
+    })
+}

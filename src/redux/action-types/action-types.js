@@ -8,5 +8,9 @@ export const Types = {
 
     //Auth
     AUTH_TRUE: 'AUTH_TRUE',
-    AUTH_TOKEN_ID: 'AUTH_TOKEN_ID'
+    AUTH_TOKEN_ID: 'AUTH_TOKEN_ID',
+
+    //Goods
+    GET_GOODS_TYPES: 'GET_GOODS_TYPES',
+    GET_GOODS: 'GET_GOODS'
 };
