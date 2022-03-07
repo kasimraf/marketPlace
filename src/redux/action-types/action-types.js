@@ -12,5 +12,6 @@ export const Types = {
 
     //Goods
     GET_GOODS_TYPES: 'GET_GOODS_TYPES',
-    GET_GOODS: 'GET_GOODS'
+    GET_GOODS: 'GET_GOODS',
+    GET_GOOD_PAGE_DATA: 'GET_GOOD_PAGE_DATA'
 };
