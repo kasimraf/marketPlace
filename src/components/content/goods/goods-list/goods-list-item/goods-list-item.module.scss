@@ -1,0 +1,59 @@
+.good {
+  width: calc(15% - 18px);
+  background-color: #eff3f6;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+  padding: 15px;
+  transition: background-color .2s ease-out;
+
+  margin-bottom: 24px;
+  margin-right: 24px;
+
+  &:hover {
+    background-color: darken(#eff3f6, 10%);
+    cursor: pointer;
+  }
+
+  color: black;
+  text-decoration: none;
+}
+
+.image {
+  img {
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid #fff;
+  }
+}
+
+.title {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.price {
+  padding: 5px;
+
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.addCart {
+  button {
+    font-size: 15px;
+    line-height: 20px;
+    min-height: 30px;
+    min-width: 100px;
+    padding: 5px 12px;
+    border-radius: 6px;
+    border: none;
+
+    background-color: #005bff;
+    color: #fff;
+    transition: background-color, ease-in-out, .3s;
+    &:hover {
+      background-color: darken(#005bff, 20%);
+    }
+  }
+}

@@ -5,6 +5,7 @@ import Markets from "./markets/markets";
 import Goods from "./goods/goods";
 import AddMarket from "./markets/add-market/add-market";
 import MarketPage from "./markets/market-page/market-page";
+import GoodPage from "./goods/good-page/good-page";
 
 const Content = () => {
     return (
@@ -14,6 +15,7 @@ const Content = () => {
                 <Route path="/goods" element={<Goods />} />
                 <Route path="/markets/addMarket" element={<AddMarket />} />
                 <Route path="/markets/:id" element={<MarketPage />} />
+                <Route path="/goods/:id" element={<GoodPage />} />
             </Routes>
         </div>
     )

@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
 import {getMarketPageDataAction} from "../../../../redux/actions/markets-actions";
 import styles from './market-page.module.scss'
-import MarketPageGoods from "./market-page-goods";
+import GoodsListItem from "../../goods/goods-list/goods-list-item/goods-list-item";
 
 const MarketPage = (props) => {
 
@@ -59,9 +59,11 @@ const MarketPage = (props) => {
             <div className={styles.goods}>
                 <div className={styles.blockName}>
                     <h2>Cписок товаров</h2>
-                    {props.goods.map((good) => {
-                        return <MarketPageGoods  good={good}/>
-                    })}
+                    <div className={styles.goods}>
+                        {props.goods.map((good) => {
+                            return <GoodsListItem  good={good}/>
+                        })}
+                    </div>
                 </div>
             </div>
         </div>
@@ -71,7 +73,7 @@ const MarketPage = (props) => {
 export default connect(
     state => ({
         market: state.markets.marketPageData,
-        goods: state.markets.marketPageGoods
+        goods: state.markets.marketPageGoods,
     }),
     dispatch => ({
         getData: (marketId) => {
