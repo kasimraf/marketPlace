@@ -12,3 +12,8 @@ export function getGoods() {
         method: "GET"
     })
 }
+export function getGood(goodId) {
+    return fetch(`${Url}:${Port}/api/${Version}/goods/${goodId}`, {
+        method: "GET"
+    })
+}

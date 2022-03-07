@@ -1,0 +1,48 @@
+.page {
+  display: flex;
+  padding-top: 30px;
+}
+
+.imageContainer {
+  width: 70%;
+  padding: 10px;
+
+  img {
+    width: 100%;
+    border-radius: 20px;
+  }
+}
+
+.title {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 20px 0;
+
+  span {
+    color: red;
+  }
+}
+
+.cartBtn {
+  button {
+    font-size: 20px;
+    line-height: 20px;
+    min-height: 60px;
+    min-width: 300px;
+    padding: 5px 12px;
+    border-radius: 6px;
+    border: none;
+
+    background-color: #005bff;
+    color: #fff;
+    transition: background-color, ease-in-out, .3s;
+    &:hover {
+      background-color: darken(#005bff, 20%);
+    }
+  }
+}

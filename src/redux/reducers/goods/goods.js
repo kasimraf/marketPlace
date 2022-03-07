@@ -2,7 +2,8 @@ import {Types} from "../../action-types/action-types";
 
 const initialState = {
     types: [],
-    goods: []
+    goods: [],
+    goodPageData: []
 };
 
 export const goods = (state = initialState, action) => {
@@ -17,6 +18,12 @@ export const goods = (state = initialState, action) => {
             return {
                 ...state,
                 goods: action.payload
+            }
+        }
+        case Types.GET_GOOD_PAGE_DATA: {
+            return {
+                ...state,
+                goodPageData: action.payload
             }
         }
         default: {
