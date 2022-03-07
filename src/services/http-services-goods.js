@@ -8,7 +8,7 @@ export function getGoodsTypes() {
     })
 }
 export function getGoods() {
-    return fetch(`${Url}:${Port}/api/${Version}/goods/type/1`, {
+    return fetch(`${Url}:${Port}/api/${Version}/goods?page=0&size=50`, {
         method: "GET"
     })
 }

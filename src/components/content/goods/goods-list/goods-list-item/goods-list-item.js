@@ -1,19 +1,25 @@
 import React from 'react';
 import style from './goods-list-item.module.scss'
+import {NavLink} from "react-router-dom";
 
 const GoodsListItem = (props) => {
     return (
-        <div className={style.good}>
-            <div className={style.image}>
-                <img src={props.good.imageUrl} alt=""/>
+        <NavLink to={`/goods/${props.good.id}`} className={style.good}>
+            <div>
+                <div className={style.image}>
+                    <img src={props.good.imageUrl} alt=""/>
+                </div>
+                <div className={style.price}>
+                    {props.good.price}$
+                </div>
+                <div className={style.title}>
+                    {props.good.name}
+                </div>
+                <div className={style.addCart}>
+                    <button>В корзину</button>
+                </div>
             </div>
-            <div className={style.title}>
-                {props.good.name}
-            </div>
-            <div className={style.price}>
-
-            </div>
-        </div>
+        </NavLink>
     );
 };
 
