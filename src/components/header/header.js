@@ -29,7 +29,7 @@ const Header = (props) => {
                         </NavLink>
                         : <NavLink className={styles.profileNavBarItem} to='./profile'>
                             <AiOutlineUser className={styles.navBarSvg}/>
-                            Рафиль
+                            <span>{props.profile.displayName}</span>
                         </NavLink>
                     }
                     <NavLink className={styles.profileNavBarItem} to='./orders'>
@@ -63,6 +63,7 @@ const Header = (props) => {
 export default connect(
     state => ({
         authStatus: state.auth.authStatus,
+        profile: state.profile.profileData
     }),
     dispatch => ({})
 )(Header);

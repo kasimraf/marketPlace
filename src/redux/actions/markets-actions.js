@@ -36,7 +36,6 @@ export const getMainMarketsAction = () => (dispatch) => {
 
 export const addMarketAction = (marketData, token) => (dispatch) => {
     let market = {
-        'fullName': "string",
         'marketType': marketData.type,
         'name': marketData.name,
         "imageUrl": marketData.imageUrl,

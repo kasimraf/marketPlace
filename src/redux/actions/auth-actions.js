@@ -2,6 +2,7 @@ import {Types} from "../action-types/action-types";
 import firebase from "firebase/compat/app";
 import {signIn, signUp} from "../../services/http-services-auth";
 import 'firebase/compat/auth';
+import {getProfileDataAction} from "./profile-actions";
 
 firebase.initializeApp({
     apiKey: "AIzaSyARIsE_fCvCoXNHS8RDd1oZjghGdjcdYE0",
@@ -23,11 +24,13 @@ export const signUpAction =  () => async (dispatch) => {
           .then(response => {
               if (response.ok) {
                   dispatch({type: Types.AUTH_TRUE})
+                  dispatch({type: Types.AUTH_TOKEN_ID, payload: token})
               } else {
                   signUp(token)
                       .then(response => {
                           if (response.ok) {
                               dispatch({type: Types.AUTH_TRUE})
+                              dispatch({type: Types.AUTH_TOKEN_ID, payload: token})
                           }
                       })
               }

@@ -73,6 +73,8 @@
     text-decoration: none;
     transition: color ease-in-out .3s;
 
+    white-space: nowrap;
+
     &:hover{
       color: #005bff;
     }
