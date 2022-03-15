@@ -1,55 +1,58 @@
 import React from 'react';
 import style from './profile-info.module.scss'
-import {NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
+import {connect} from 'react-redux'
+import Button from "@mui/material/Button";
+import {setProfileRoleAsSellerAction} from "../../../../../redux/actions/profile-actions";
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+
     return (
         <div className={style.page}>
             <h3>Учётные данные</h3>
             <div className={style.container}>
                 <p className={style.title}>Имя</p>
-                <p className={style.text}>Рафиль</p>
-            </div>
-            <div className={style.container}>
-                <p className={style.title}>Фамилия</p>
-                <p className={style.text}>Касимов</p>
-            </div>
-            <div className={style.container}>
-                <p className={style.title}>Отчество</p>
-                <p className={style.text}>Рамилевич</p>
+                <p className={style.text}>{props.profile.name}</p>
             </div>
             <div className={style.container}>
                 <p className={style.title}>Электронная почта</p>
-                <p className={style.text}>mail@mail.ru</p>
+                <p className={style.text}>{props.profile.email}</p>
             </div>
-            <h3>Адрес</h3>
+            {(props.profile.roles) ?
+                <div className={style.container}>
+                    <p className={style.title}>Статус профиля</p>
+                    {(props.profile?.roles[0] === 'ROLE_BUYER') ?
+                        <div style={{"display": "flex"}}>
+                            <p className={style.text}>Покупатель</p>
+                            <Button onClick={() => {
+                                props.setProfileRole(props.tokenId)
+                            }} size="small">Стать продавцем</Button>
+                        </div> :
+                        <div>
+                            <p className={style.text}>Продавец</p>
+                        </div>}
+                </div> :
+                <></>}
+
+            <h3>Подробная информация</h3>
             <div className={style.container}>
-                <p className={style.title}>Страна</p>
-                <p className={style.text}>Рэссэй</p>
+                <p className={style.title}>Пока что пусто</p>
+                <p className={style.text}>Тут поидеи должен быть user-info</p>
             </div>
-            <div className={style.container}>
-                <p className={style.title}>Город</p>
-                <p className={style.text}>Казань</p>
-            </div>
-            <div className={style.container}>
-                <p className={style.title}>Район</p>
-                <p className={style.text}>Атнинский</p>
-            </div>
-            <div className={style.container}>
-                <p className={style.title}>Улица</p>
-                <p className={style.text}>Советская</p>
-            </div>
-            <div className={style.container}>
-                <p className={style.title}>Дом</p>
-                <p className={style.text}>26</p>
-            </div>
-            <div className={style.container}>
-                <p className={style.title}>Почтовый индекс</p>
-                <p className={style.text}>2634545</p>
-            </div>
-            <NavLink to='../edit-profile' className={style.editProfile}>Изменить данные</NavLink>
+            <Link to='../edit-profile' className={style.editProfile}><Button size="small">Изменить
+                данные</Button></Link>
         </div>
     );
 };
 
-export default ProfileInfo;
+export default connect(
+    state => ({
+        profile: state.auth.profile,
+        tokenId: state.auth.tokenId
+    }),
+    dispatch => ({
+        setProfileRole: (tokenId) => {
+            dispatch(setProfileRoleAsSellerAction(tokenId))
+        }
+    })
+)(ProfileInfo);

@@ -12,11 +12,8 @@ const Header = (props) => {
     return (
         <div className={styles.header}>
             <div className={styles.midRow}>
-                <div>
+                <div className={styles.titleBlock}>
                     <NavLink className={styles.title} to='./'>әзүн</NavLink>
-                </div>
-                <div className={styles.catalogBtn}>
-                    <button disabled>Каталог</button>
                 </div>
                 <div className={styles.search}>
                     <input type="text" placeholder="Искать на әзүн"/>
@@ -29,7 +26,7 @@ const Header = (props) => {
                         </NavLink>
                         : <NavLink className={styles.profileNavBarItem} to='./profile'>
                             <AiOutlineUser className={styles.navBarSvg}/>
-                            <span>{props.profile.displayName}</span>
+                            <span>{props.profile.name?.split(' ')[0]}</span>
                         </NavLink>
                     }
                     <NavLink className={styles.profileNavBarItem} to='./orders'>
@@ -63,7 +60,7 @@ const Header = (props) => {
 export default connect(
     state => ({
         authStatus: state.auth.authStatus,
-        profile: state.profile.profileData
+        profile: state.auth.profile
     }),
     dispatch => ({})
 )(Header);

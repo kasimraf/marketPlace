@@ -11,9 +11,13 @@
   align-items: center;
 }
 
+.titleBlock {
+  width: 20vw;
+}
+
 .title {
   color: #005bff;
-  font-size: 5rem;
+  font-size: 3rem;
   padding: 5px;
   font-weight: 900;
   font-style: italic;
@@ -23,28 +27,6 @@
 
   &:focus {
     outline: none;
-  }
-}
-
-.catalogBtn {
-  width: 10vw;
-
-  button {
-    font-size: 16px;
-    line-height: 20px;
-    min-height: 40px;
-    min-width: 120px;
-    padding: 0 12px;
-    border-radius: 6px;
-    border: none;
-
-    background-color: #005bff;
-    color: #fff;
-    transition: background-color, ease-in-out, .3s;
-
-    &:hover {
-      background-color: darken(#005bff, 20%);
-    }
   }
 }
 
@@ -121,7 +103,6 @@
     }
   }
 }
-
 //SVG styles
 
 .navBarSvg {

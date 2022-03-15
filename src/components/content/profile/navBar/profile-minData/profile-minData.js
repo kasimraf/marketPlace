@@ -1,15 +1,21 @@
 import React from 'react';
 import style from './profile-minData.module.scss'
+import {connect} from "react-redux";
 
 
 
-const ProfileMinData = () => {
+const ProfileMinData = (props) => {
     return (
         <div className={style.container}>
-            <img src='https://zoomwiki.ru/wp-content/uploads/2020/12/avatarki-dlya-zuma.jpg' alt=""/>
-            <h2>Рафиль Касимов</h2>
+            <img src={props.profile.userPic} alt=""/>
+            <h2>{props.profile.name}</h2>
         </div>
     );
 };
 
-export default ProfileMinData;
+export default connect(
+    state => ({
+        profile: state.auth.profile
+    }),
+    dispatch => ({})
+)(ProfileMinData);

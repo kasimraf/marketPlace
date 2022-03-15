@@ -17,7 +17,7 @@ firebase.initializeApp({
 const auth = firebase.auth();
 const googleProvider = new firebase.auth.GoogleAuthProvider()
 
-export const signUpAction =  () => async (dispatch) => {
+export const loginAction =  (navigate) => async (dispatch) => {
   const {user} = await auth.signInWithPopup(googleProvider);
   user.getIdToken().then(token => {
       signIn(token)
@@ -25,12 +25,16 @@ export const signUpAction =  () => async (dispatch) => {
               if (response.ok) {
                   dispatch({type: Types.AUTH_TRUE})
                   dispatch({type: Types.AUTH_TOKEN_ID, payload: token})
+                  dispatch(getProfileDataAction(token))
+                  navigate(-1)
               } else {
                   signUp(token)
                       .then(response => {
                           if (response.ok) {
                               dispatch({type: Types.AUTH_TRUE})
                               dispatch({type: Types.AUTH_TOKEN_ID, payload: token})
+                              dispatch(getProfileDataAction(token))
+                              navigate(-1)
                           }
                       })
               }

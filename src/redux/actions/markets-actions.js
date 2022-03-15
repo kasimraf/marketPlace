@@ -1,9 +1,9 @@
 import {
-    addMarket,
+    addMarket, delMarket, editMarket,
     getMainMarkets,
     getMarketData,
     getMarketGoods,
-    getMarketsTypes
+    getMarketsTypes, getUserMarket
 } from "../../services/http-services-markets";
 import {Types} from "../action-types/action-types";
 
@@ -27,7 +27,6 @@ export const getMainMarketsAction = () => (dispatch) => {
                 return response.json();
             }
         }).then(json => {
-        console.log(json.content)
         dispatch({type: Types.GET_MAIN_MARKETS, payload: json.content});
     }).catch(e => {
         console.log('Не удалось подключиться к серверу')
@@ -36,9 +35,10 @@ export const getMainMarketsAction = () => (dispatch) => {
 
 export const addMarketAction = (marketData, token) => (dispatch) => {
     let market = {
-        'marketType': marketData.type,
+        'marketTypeId': marketData.type,
         'name': marketData.name,
         "imageUrl": marketData.imageUrl,
+        "description": marketData.description
     }
     addMarket(market, token)
         .then(response => {
@@ -70,4 +70,37 @@ export const getMarketPageDataAction = (marketId) => (dispatch) => {
         console.log('Не удалось подключиться к серверу')
     })
 };
+
+export const getUserMarketAction = (token, ownerId) => (dispatch) => {
+    getUserMarket(token, ownerId)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+        }).then(json => {
+        dispatch({type: Types.GET_USER_MARKET, payload: json});
+    }).catch(e => {
+        console.log('Не удалось подключиться к серверу')
+    })
+};
+
+export const editMarketAction = (marketData, token) => (dispatch) => {
+    let market = {
+        'marketTypeId': marketData.type,
+        'name': marketData.name,
+        "imageUrl": marketData.imageUrl,
+        "description": marketData.description
+    }
+    editMarket(market, token)
+        .then(response => {
+            if (response.ok) {
+                console.log('Магазин успешно изменен')
+            }
+        })
+};
+export const delMarketAction = (ownerId, token) => (dispatch) => {
+    delMarket(ownerId, token)
+};
+
+
 

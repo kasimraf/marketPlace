@@ -15,10 +15,7 @@ const MainMarketsItem = (props) => {
                         <h4>{props.market.name}</h4>
                     </div>
                     <div className={styles.subTitle}>
-                        {props.market.description.substr(0,50)}...
-                    </div>
-                    <div className={styles.marketType}>
-                        {props.market.marketType}
+                        {props.market.description}
                     </div>
                 </div>
             </div>

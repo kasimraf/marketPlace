@@ -4,7 +4,8 @@ const initialState = {
     types: [],
     mainMarkets: [],
     marketPageData: [],
-    marketPageGoods: []
+    marketPageGoods: [],
+    userMarketData: []
 };
 
 export const markets = (state = initialState, action) => {
@@ -37,6 +38,12 @@ export const markets = (state = initialState, action) => {
             return {
                 ...state,
                 marketPageGoods: action.payload
+            }
+        }
+        case Types.GET_USER_MARKET: {
+            return {
+                ...state,
+                userMarketData: action.payload
             }
         }
         default: {

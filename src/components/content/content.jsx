@@ -9,7 +9,7 @@ import AuthPage from "../auth/auth-page";
 import Main from "./main/main";
 import Profile from "./profile/profile";
 import ProfileInfo from "./profile/pages/profile-info/profile-info";
-import MarketInfo from "./profile/pages/market-info/market-info";
+import UserMarketInfo from "./profile/pages/market-info/user-market-info";
 import EditMarket from "./profile/pages/edit-market/edit-market";
 import AddGood from "./profile/pages/add-good/add-good";
 import ProfileGoods from "./profile/pages/goods/profile-goods";
@@ -30,10 +30,10 @@ const Content = () => {
                 <Route path="cart" element={<Cart/>}/>
                 <Route path="orders" element={<Orders/>}/>
                 <Route path="/profile" element={<Profile/>}>
-                    <Route path="my" element={<ProfileInfo/>}/>
+                    <Route index element={<ProfileInfo/>}/>
                     <Route path="edit-profile" element={<EditProfileInfo/>}/>
-                    <Route path="market" element={<MarketInfo/>}/>
-                    <Route path="edit-market" element={<EditMarket/>}/>
+                    <Route path="market" element={<UserMarketInfo/>}/>
+                    <Route path="market/edit" element={<EditMarket/>}/>
                     <Route path="goods" element={<ProfileGoods/>}/>
                     <Route path="add-good" element={<AddGood/>}/>
                 </Route>

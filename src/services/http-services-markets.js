@@ -33,8 +33,42 @@ export function getMarketData(marketId) {
 }
 
 export function getMarketGoods(marketId) {
-    debugger
     return fetch(`${Url}:${Port}/api/${Version}/goods/market/${marketId}`, {
         method: "GET",
     })
 }
+
+export function getUserMarket(token, ownerId) {
+    return fetch(`${Url}:${Port}/api/${Version}/market/owner/${ownerId}`, {
+        method: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+    })
+}
+
+export function editMarket(market, token) {
+    return fetch(`${Url}:${Port}/api/${Version}/market/`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        method: "PUT",
+        body: JSON.stringify(market)
+    })
+}
+
+export function delMarket(ownerId, token) {
+    return fetch(`${Url}:${Port}/api/${Version}/market/${ownerId}`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        method: "DELETE",
+    })
+}
+

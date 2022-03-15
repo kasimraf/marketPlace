@@ -11,7 +11,7 @@ const ProfileNavBar = () => {
             </div>
             <div className={style.navBar}>
                 <h4>Личная информация</h4>
-                <NavLink  className={style.navBarItem} to='./my'><p>Мои данные</p></NavLink>
+                <NavLink  className={style.navBarItem} to='./'><p>Мои данные</p></NavLink>
                 <h4>Магазин</h4>
                 <NavLink className={style.navBarItem} to='./market'><p>Главная</p></NavLink>
                 <NavLink className={style.navBarItem} to='./goods'><p>Товары</p></NavLink>
