@@ -89,7 +89,8 @@ export const editMarketAction = (marketData, token) => (dispatch) => {
         'marketTypeId': marketData.type,
         'name': marketData.name,
         "imageUrl": marketData.imageUrl,
-        "description": marketData.description
+        "description": marketData.description,
+        "id" : marketData.id
     }
     editMarket(market, token)
         .then(response => {
@@ -98,8 +99,8 @@ export const editMarketAction = (marketData, token) => (dispatch) => {
             }
         })
 };
-export const delMarketAction = (ownerId, token) => (dispatch) => {
-    delMarket(ownerId, token)
+export const delMarketAction = (token) => (dispatch) => {
+    delMarket(token)
 };
 
 

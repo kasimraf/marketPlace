@@ -11,6 +11,11 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
 
 
 const EditMarket = (props) => {
@@ -27,6 +32,16 @@ const EditMarket = (props) => {
         setImageUrl(props.userMarket.imageUrl)
     }
 
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     useEffect(() => {
         props.getMarketsTypes()
         getInitialData()
@@ -37,7 +52,8 @@ const EditMarket = (props) => {
             name: name,
             type: type,
             description: description,
-            imageUrl: imageUrl
+            imageUrl: imageUrl,
+            id: props.userMarket.id
         }
         props.editMarket(marketData, props.token)
     }
@@ -104,8 +120,29 @@ const EditMarket = (props) => {
                 </FormControl>
             </form>
             <FormControl variant="standard" sx={{m: 1, minWidth: 120, width: '40ch'}}>
-                <Button variant="outlined" color="error" onClick={() => {props.delMarket(props.ownerId, props.token)}}>Удалить магазин</Button>
+                <Button variant="outlined" color="error" onClick={handleClickOpen}>Удалить магазин</Button>
             </FormControl>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">
+                    {"Вы точно хотите удалить ваш магазин"}
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        При удалении магазина удаляются и все вашы товары
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>Отменить</Button>
+                    <Button onClick={() => {props.delMarket(props.token)}} autoFocus>
+                        Удалить
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 };
@@ -124,8 +161,8 @@ export default connect(
         editMarket: (marketData, token) => {
             dispatch(editMarketAction(marketData, token))
         },
-        delMarket: (ownerId, token) => {
-            dispatch(delMarketAction(ownerId, token))
+        delMarket: (token) => {
+            dispatch(delMarketAction(token))
         }
     })
 )(EditMarket);

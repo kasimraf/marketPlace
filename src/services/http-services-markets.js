@@ -61,8 +61,8 @@ export function editMarket(market, token) {
     })
 }
 
-export function delMarket(ownerId, token) {
-    return fetch(`${Url}:${Port}/api/${Version}/market/${ownerId}`, {
+export function delMarket(token) {
+    return fetch(`${Url}:${Port}/api/${Version}/market/`, {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
