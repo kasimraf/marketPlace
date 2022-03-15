@@ -2,7 +2,8 @@ import {Types} from "../../action-types/action-types";
 
 const initialState = {
     authStatus: false,
-    tokenId: '',
+    profile: [],
+    tokenId: ''
 };
 
 export const auth = (state = initialState, action) => {
@@ -17,6 +18,12 @@ export const auth = (state = initialState, action) => {
             return {
                 ...state,
                 tokenId: action.payload
+            }
+        }
+        case Types.GET_PROFILE_DATA: {
+            return {
+                ...state,
+                profile: action.payload
             }
         }
         default: {

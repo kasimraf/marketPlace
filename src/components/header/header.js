@@ -1,36 +1,46 @@
 import React from 'react'
 import styles from './header.module.scss'
 import {NavLink} from "react-router-dom";
+import {connect} from "react-redux";
 
-const Header = () => {
+import {AiOutlineUser} from 'react-icons/ai'
+import {AiOutlineShoppingCart} from 'react-icons/ai'
+import {MdFavoriteBorder} from 'react-icons/md'
+import {ImFire} from 'react-icons/im'
+
+const Header = (props) => {
     return (
         <div className={styles.header}>
             <div className={styles.midRow}>
-                <div>
+                <div className={styles.titleBlock}>
                     <NavLink className={styles.title} to='./'>әзүн</NavLink>
-                </div>
-                <div className={styles.catalogBtn}>
-                    <button disabled>Каталог</button>
                 </div>
                 <div className={styles.search}>
                     <input type="text" placeholder="Искать на әзүн"/>
                 </div>
                 <div className={styles.profileNavBar}>
-                    <ul className={styles.profileNavBarList}>
-                        <li className={styles.profileNavBarListItem}>
-                            Винни-Пух
-                        </li>
-                        <li className={styles.profileNavBarListItem}>
-                            Заказы
-                        </li>
-                        <li className={styles.profileNavBarListItem}>
-                            Избранное
-                        </li>
-                        <li className={styles.profileNavBarListItem}>
-                            Корзина
-                        </li>
-
-                    </ul>
+                    {!props.authStatus
+                        ? <NavLink className={styles.profileNavBarItem} to='./auth'>
+                            <AiOutlineUser className={styles.navBarSvg}/>
+                            Войти
+                        </NavLink>
+                        : <NavLink className={styles.profileNavBarItem} to='./profile'>
+                            <AiOutlineUser className={styles.navBarSvg}/>
+                            <span>{props.profile.name?.split(' ')[0]}</span>
+                        </NavLink>
+                    }
+                    <NavLink className={styles.profileNavBarItem} to='./orders'>
+                        <ImFire className={styles.navBarSvg}/>
+                        Заказы
+                    </NavLink>
+                    <NavLink className={styles.profileNavBarItem} to='./favorites'>
+                        <MdFavoriteBorder className={styles.navBarSvg}/>
+                        Избранное
+                    </NavLink>
+                    <NavLink className={styles.profileNavBarItem} to='./cart'>
+                        <AiOutlineShoppingCart className={styles.navBarSvg}/>
+                        Корзина
+                    </NavLink>
                 </div>
             </div>
             <div className={styles.bottomRow}>
@@ -47,4 +57,10 @@ const Header = () => {
     )
 }
 
-export default Header;
+export default connect(
+    state => ({
+        authStatus: state.auth.authStatus,
+        profile: state.auth.profile
+    }),
+    dispatch => ({})
+)(Header);

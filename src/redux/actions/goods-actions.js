@@ -21,7 +21,6 @@ export const getGoodsAction = () => (dispatch) => {
                 return response.json();
             }
         }).then(json => {
-        console.log(json.content)
         dispatch({type: Types.GET_GOODS, payload: json.content});
     }).catch(e => {
         console.log('Не удалось подключиться к серверу')

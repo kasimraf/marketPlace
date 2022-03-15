@@ -17,9 +17,6 @@ const MainMarketsItem = (props) => {
                     <div className={styles.subTitle}>
                         {props.market.description}
                     </div>
-                    <div className={styles.marketType}>
-                        {props.market.marketType}
-                    </div>
                 </div>
             </div>
         </NavLink>
