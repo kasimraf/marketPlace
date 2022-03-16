@@ -79,6 +79,7 @@ export const getUserMarketAction = (token, ownerId) => (dispatch) => {
             }
         }).then(json => {
         dispatch({type: Types.GET_USER_MARKET, payload: json});
+        console.log(json)
     }).catch(e => {
         console.log('Не удалось подключиться к серверу')
     })

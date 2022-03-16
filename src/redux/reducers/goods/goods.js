@@ -3,7 +3,8 @@ import {Types} from "../../action-types/action-types";
 const initialState = {
     types: [],
     goods: [],
-    goodPageData: []
+    goodPageData: [],
+    userGoods: []
 };
 
 export const goods = (state = initialState, action) => {
@@ -24,6 +25,12 @@ export const goods = (state = initialState, action) => {
             return {
                 ...state,
                 goodPageData: action.payload
+            }
+        }
+        case Types.GET_USER_GOODS: {
+            return {
+                ...state,
+                userGoods: action.payload
             }
         }
         default: {
