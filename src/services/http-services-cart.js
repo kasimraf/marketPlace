@@ -14,7 +14,7 @@ export function getCart(token) {
 }
 
 export function addGoodToCart(goodId, token) {
-    return fetch('http://localhost:8080/api/v1/cart/goods/-2?total=2', {
+    return fetch(`${Url}:${Port}/api/${Version}/cart/goods/${goodId}?total=2`, {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
