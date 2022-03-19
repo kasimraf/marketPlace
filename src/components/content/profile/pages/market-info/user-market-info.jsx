@@ -50,7 +50,7 @@ const UserMarketInfo = (props) => {
                         </div>
                     </div>
                     <div>
-                        <Link to='./edit'>
+                        <Link to='./edit' style={{"textDecoration": "none"}}>
                             <Button variant="contained">
                                 Изменить
                             </Button>

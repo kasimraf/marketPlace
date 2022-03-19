@@ -6,9 +6,30 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import {connect} from "react-redux";
-import {addGoodAction, getGoodsTypesAction} from "../../../../../redux/actions/goods-actions";
+import {
+    delGoodAction,
+    editGoodAction,
+    getEditGoodPageDataAction,
+    getGoodsTypesAction
+} from "../../../../../../redux/actions/goods-actions";
+import {useNavigate, useParams} from "react-router-dom";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
+import Dialog from "@mui/material/Dialog";
 
-const AddGood = (props) => {
+const EditGood = (props) => {
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const [name, setName] = useState('');
     const [type, setType] = useState('');
@@ -17,12 +38,25 @@ const AddGood = (props) => {
     const [price, setPrice] = useState('');
     const [count, setCount] = useState('');
     const [producer, setProducer] = useState('');
+    const [id, setId] = useState('')
+
+    const getInitialData = (good)=> {
+        setName(good.name)
+        setType(good.goodsTypeId)
+        setDescription(good.description)
+        setImageUrl(good.imageUrl)
+        setPrice(good.price)
+        setCount(good.count)
+        setProducer(good.producer)
+        setId(good.id)
+    }
 
     useEffect(() => {
         props.getGoodsTypes()
+        props.getData(params.id, getInitialData);
     }, [])
 
-    const addMarket = () => {
+    const editGood = () => {
         const newGood = {
             count: count,
             description: description,
@@ -32,16 +66,20 @@ const AddGood = (props) => {
             name: name,
             price: price,
             producer: producer,
+            id: id
         }
-        props.addGood(newGood, props.token)
+        props.editGood(newGood, props.token, navigate)
     }
+
+    const params = useParams()
+    const navigate = useNavigate()
 
     return (
         <>
-            <h3>Доавить товар</h3>
+            <h3>Изменить товар</h3>
             <form autoComplete="off" action="" onSubmit={event => {
                 event.preventDefault();
-                addMarket()
+                editGood()
             }}>
                 <FormControl variant="standard" sx={{m: 1, minWidth: 120, width: '40ch'}}>
                     <TextField
@@ -117,6 +155,7 @@ const AddGood = (props) => {
                         labelId="demo-simple-select-standard-label"
                         id="demo-simple-select-standard"
                         label="Тип товара"
+                        value={type}
                         onChange={event => {
                             setType(event.target.value)
                         }}
@@ -129,8 +168,32 @@ const AddGood = (props) => {
                     </Select>
                 </FormControl>
                 <FormControl variant="standard" sx={{m: 1, minWidth: 120, width: '40ch'}}>
-                    <Button type="submit" variant="contained">Добавить</Button>
+                    <Button type="submit" variant="contained">Изменить</Button>
                 </FormControl>
+                <FormControl variant="standard" sx={{m: 1, minWidth: 120, width: '40ch'}}>
+                    <Button variant="outlined" color="error" onClick={handleClickOpen}>Удалить товар</Button>
+                </FormControl>
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">
+                        {"Вы точно хотите удалить ваш товар"}
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            При удалении товара все ваши активные заявки отменяются
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose}>Отменить</Button>
+                        <Button onClick={() => {props.delGood(id, props.token, navigate)}} autoFocus>
+                            Удалить
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </form>
         </>
     );
@@ -140,14 +203,21 @@ export default connect(
     state => ({
         goodsTypes: state.goods.types,
         token: state.auth.tokenId,
-        userMarketId: state.auth.profile.marketId
+        userMarketId: state.auth.profile.marketId,
+        good: state.goods.goodPageData
     }),
     dispatch => ({
         getGoodsTypes: () => {
             dispatch(getGoodsTypesAction())
         },
-        addGood: (newGood, token) => {
-            dispatch(addGoodAction(newGood, token))
+        editGood: (newGood, token, navigate) => {
+            dispatch(editGoodAction(newGood, token, navigate))
+        },
+        getData: (goodId, refreshPageData) => {
+            dispatch(getEditGoodPageDataAction(goodId, refreshPageData))
+        },
+        delGood: (goodId, token, navigate) => {
+            dispatch(delGoodAction(goodId, token, navigate))
         }
     })
-)(AddGood);
+)(EditGood);

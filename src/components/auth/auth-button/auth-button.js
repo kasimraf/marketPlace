@@ -6,10 +6,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 
 const AuthButton = (props) => {
 
-    const location = useLocation();
     const navigate = useNavigate();
-
-    const fromPage = location.state?.from?.pathname || './'
 
     return (
         <div>

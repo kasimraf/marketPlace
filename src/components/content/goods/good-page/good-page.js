@@ -17,7 +17,7 @@ const GoodPage = (props) => {
             <div className={style.imageContainer}>
                 <img src={props.good.imageUrl} alt=""/>
             </div>
-            <div className={style.container}>
+            <div>
                 <div className={style.title}>
                     {props.good.name}
                 </div>

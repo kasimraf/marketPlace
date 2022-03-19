@@ -7,6 +7,7 @@ import {AiOutlineUser} from 'react-icons/ai'
 import {AiOutlineShoppingCart} from 'react-icons/ai'
 import {MdFavoriteBorder} from 'react-icons/md'
 import {ImFire} from 'react-icons/im'
+import Button from "@mui/material/Button";
 
 const Header = (props) => {
     return (
@@ -46,10 +47,10 @@ const Header = (props) => {
             <div className={styles.bottomRow}>
                 <div className={styles.navBar}>
                     <div>
-                        <NavLink className={styles.navBarItem} to="/markets">Магазины</NavLink>
+                        <NavLink to="/markets" style={{"textDecoration": "none"}}><Button variant="outlined">Магазины</Button></NavLink>
                     </div>
                     <div className={styles.navBarItem}>
-                        <NavLink className={styles.navBarItem} to="/goods">Список всех товаров</NavLink>
+                        <NavLink to="/goods" style={{"textDecoration": "none"}}><Button variant="outlined">Список всех товаров</Button></NavLink>
                     </div>
                 </div>
             </div>
