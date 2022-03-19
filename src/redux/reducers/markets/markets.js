@@ -16,12 +16,6 @@ export const markets = (state = initialState, action) => {
                 types: action.payload
             }
         }
-        case Types.GET_RANDOM_MARKETS: {
-            return {
-                ...state,
-                randomMarkets: action.payload
-            }
-        }
         case Types.GET_MAIN_MARKETS: {
             return {
                 ...state,

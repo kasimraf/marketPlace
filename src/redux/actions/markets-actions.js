@@ -79,12 +79,13 @@ export const getUserMarketAction = (token, ownerId) => (dispatch) => {
             }
         }).then(json => {
         dispatch({type: Types.GET_USER_MARKET, payload: json});
+        console.log(json)
     }).catch(e => {
         console.log('Не удалось подключиться к серверу')
     })
 };
 
-export const editMarketAction = (marketData, token) => (dispatch) => {
+export const editMarketAction = (marketData, token, navigate) => (dispatch) => {
     let market = {
         'marketTypeId': marketData.type,
         'name': marketData.name,
@@ -96,11 +97,18 @@ export const editMarketAction = (marketData, token) => (dispatch) => {
         .then(response => {
             if (response.ok) {
                 console.log('Магазин успешно изменен')
+                navigate(-1)
             }
         })
 };
-export const delMarketAction = (token) => (dispatch) => {
+export const delMarketAction = (token, navigate) => (dispatch) => {
     delMarket(token)
+        .then(response => {
+            if (response.ok) {
+                console.log('Магазин успешно изменен')
+                navigate(-1)
+            }
+        })
 };
 
 

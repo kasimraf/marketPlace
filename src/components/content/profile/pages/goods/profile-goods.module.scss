@@ -1,0 +1,23 @@
+.addGoodRow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.goodsList {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  margin-top: 15px;
+  border-top: 1px solid rgba(0, 0, 0, 0.36);
+  padding-top: 15px;
+}
+
+.tableName {
+  color: black;
+  text-decoration: none;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}

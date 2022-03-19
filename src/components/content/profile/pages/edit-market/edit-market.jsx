@@ -16,6 +16,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
+import {useNavigate} from "react-router-dom";
 
 
 const EditMarket = (props) => {
@@ -55,8 +56,10 @@ const EditMarket = (props) => {
             imageUrl: imageUrl,
             id: props.userMarket.id
         }
-        props.editMarket(marketData, props.token)
+        props.editMarket(marketData, props.token, navigate)
     }
+
+    const navigate =useNavigate()
 
     return (
         <div>
@@ -138,7 +141,7 @@ const EditMarket = (props) => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Отменить</Button>
-                    <Button onClick={() => {props.delMarket(props.token)}} autoFocus>
+                    <Button onClick={() => {props.delMarket(props.token, navigate)}} autoFocus>
                         Удалить
                     </Button>
                 </DialogActions>
@@ -158,11 +161,11 @@ export default connect(
         getMarketsTypes: () => {
             dispatch(getMarketsTypesAction())
         },
-        editMarket: (marketData, token) => {
-            dispatch(editMarketAction(marketData, token))
+        editMarket: (marketData, token, navigate) => {
+            dispatch(editMarketAction(marketData, token, navigate))
         },
-        delMarket: (token) => {
-            dispatch(delMarketAction(token))
+        delMarket: (token, navigate) => {
+            dispatch(delMarketAction(token, navigate))
         }
     })
 )(EditMarket);

@@ -11,11 +11,12 @@ import Profile from "./profile/profile";
 import ProfileInfo from "./profile/pages/profile-info/profile-info";
 import UserMarketInfo from "./profile/pages/market-info/user-market-info";
 import EditMarket from "./profile/pages/edit-market/edit-market";
-import AddGood from "./profile/pages/add-good/add-good";
+import AddGood from "./profile/pages/goods/add-good/add-good";
 import ProfileGoods from "./profile/pages/goods/profile-goods";
 import EditProfileInfo from "./profile/pages/edit-profile-info/edit-profile-info";
 import Cart from "./cart/cart";
 import Orders from "./orders/orders";
+import EditGood from "./profile/pages/goods/edit-good/edit-good";
 
 const Content = () => {
     return (
@@ -36,6 +37,7 @@ const Content = () => {
                     <Route path="market/edit" element={<EditMarket/>}/>
                     <Route path="goods" element={<ProfileGoods/>}/>
                     <Route path="add-good" element={<AddGood/>}/>
+                    <Route path="edit-good/:id" element={<EditGood/>}/>
                 </Route>
             </Routes>
         </div>
