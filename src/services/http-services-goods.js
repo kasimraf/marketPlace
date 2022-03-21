@@ -1,27 +1,25 @@
-const Url = "http://localhost";
-const Port = "8080";
-const Version = 'v1'
+import {BASE_URL} from './instance'
 
 export function getGoodsTypes() {
-    return fetch(`${Url}:${Port}/api/${Version}/goods/type`, {
+    return fetch(`${BASE_URL}/goods/type`, {
         method: 'GET'
     })
 }
 
 export function getGoods() {
-    return fetch(`${Url}:${Port}/api/${Version}/goods?page=0&size=50`, {
+    return fetch(`${BASE_URL}/goods?page=0&size=250`, {
         method: "GET"
     })
 }
 
 export function getGood(goodId) {
-    return fetch(`${Url}:${Port}/api/${Version}/goods/${goodId}`, {
+    return fetch(`${BASE_URL}/goods/${goodId}`, {
         method: "GET"
     })
 }
 
 export function addGood(good, token) {
-    return fetch(`${Url}:${Port}/api/${Version}/goods/`, {
+    return fetch(`${BASE_URL}/goods/`, {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -33,7 +31,7 @@ export function addGood(good, token) {
 }
 
 export function editGood(good, token) {
-    return fetch(`${Url}:${Port}/api/${Version}/goods/`, {
+    return fetch(`${BASE_URL}/goods/`, {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -45,7 +43,7 @@ export function editGood(good, token) {
 }
 
 export function delGood(goodId, token) {
-    return fetch(`${Url}:${Port}/api/${Version}/goods/${goodId}`, {
+    return fetch(`${BASE_URL}/goods/${goodId}`, {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',

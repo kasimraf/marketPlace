@@ -1,5 +1,5 @@
 import {Types} from "../action-types/action-types";
-import {addGoodToCart, getCart} from "../../services/http-services-cart";
+import {addGoodToCart, delGoodToCart, getCart, setTotal} from "../../services/http-services-cart";
 
 export const getCartAction = (token) => (dispatch) => {
     getCart(token)
@@ -18,7 +18,26 @@ export const addGoodToCartAction = (goodId, token) => (dispatch) => {
     addGoodToCart(goodId, token)
         .then(response => {
             if (response.ok) {
-                alert('Товар добавлен в корзину')
+                dispatch(getCartAction(token))
             }
         })
 }
+
+export const delGoodToCartAction = (goodId, token) => (dispatch) => {
+    delGoodToCart(goodId, token)
+        .then(response => {
+            if (response.ok) {
+                dispatch(getCartAction(token))
+            }
+        })
+}
+
+export const setTotalGoodToCartAction = (token, goodId, total) => (dispatch) => {
+    setTotal(token, goodId, total)
+        .then(response => {
+            if (response.ok) {
+                dispatch(getCartAction(token))
+            }
+        })
+}
+

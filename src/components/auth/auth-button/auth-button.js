@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from "react-redux";
 import {loginAction} from "../../../redux/actions/auth-actions";
 import style from './auth-button.module.scss'
-import {useLocation, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const AuthButton = (props) => {
 

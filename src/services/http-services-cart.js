@@ -1,9 +1,7 @@
-const Url = "http://localhost";
-const Port = "8080";
-const Version = 'v1'
+import {BASE_URL} from "./instance";
 
 export function getCart(token) {
-    return fetch(`${Url}:${Port}/api/${Version}/cart`, {
+    return fetch(`${BASE_URL}/cart`, {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -14,12 +12,34 @@ export function getCart(token) {
 }
 
 export function addGoodToCart(goodId, token) {
-    return fetch(`${Url}:${Port}/api/${Version}/cart/goods/${goodId}?total=2`, {
+    return fetch(`${BASE_URL}/cart/goods/${goodId}?total=2`, {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + token
         },
         method: "POST"
+    })
+}
+
+export function delGoodToCart(goodId, token) {
+    return fetch(`${BASE_URL}/cart/goods/${goodId}`, {
+        method: "DELETE",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+    })
+}
+
+export function setTotal(token, goodId, total) {
+    return fetch(`${BASE_URL}/cart/goods/${goodId}/total/${total}`, {
+        method: "PATCH",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
     })
 }
