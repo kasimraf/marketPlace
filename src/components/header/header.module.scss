@@ -1,7 +1,7 @@
 .header {
   width: 90vw;
   height: 100%;
-
+padding-top: 10px;
   margin-bottom: 5px;
 }
 
@@ -9,6 +9,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 15px;
 }
 
 .titleBlock {
@@ -17,7 +18,7 @@
 
 .title {
   color: #005bff;
-  font-size: 3rem;
+  font-size: 2rem;
   padding: 5px;
   font-weight: 900;
   font-style: italic;

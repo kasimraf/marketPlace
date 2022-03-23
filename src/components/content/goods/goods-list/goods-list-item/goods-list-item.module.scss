@@ -1,5 +1,6 @@
 .good {
-  width: calc(15% - 18px);
+  width: 15%;
+  min-width: 200px;
   background-color: #eff3f6;
   border-radius: 4px;
   box-sizing: border-box;
@@ -8,7 +9,7 @@
   transition: background-color .2s ease-out;
 
   margin-bottom: 24px;
-  margin-right: 24px;
+  margin-right: 34px;
 
   &:hover {
     background-color: darken(#eff3f6, 10%);
@@ -20,16 +21,26 @@
 }
 
 .image {
+  width: 100%;
+  height: 20vh;
+  border-radius: 10px;
+  border: 2px solid #fff;
+  max-height: 200px;
+
   img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 10px;
-    border: 2px solid #fff;
   }
 }
 
 .title {
   text-align: center;
   padding: 10px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .price {
@@ -40,20 +51,11 @@
 }
 
 .addCart {
-  button {
-    font-size: 15px;
-    line-height: 20px;
-    min-height: 30px;
-    min-width: 100px;
-    padding: 5px 12px;
-    border-radius: 6px;
-    border: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 
-    background-color: #005bff;
-    color: #fff;
-    transition: background-color, ease-in-out, .3s;
-    &:hover {
-      background-color: darken(#005bff, 20%);
-    }
+  &:hover {
+    cursor: pointer;
   }
 }

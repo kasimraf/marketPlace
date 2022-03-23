@@ -1,15 +1,13 @@
-const Url = "http://localhost";
-const Port = "8080";
-const Version = 'v1'
+import {BASE_URL} from "./instance";
 
 export function getMarketsTypes() {
-    return fetch(`${Url}:${Port}/api/${Version}/market/type`, {
+    return fetch(`${BASE_URL}/market/type`, {
         method: 'GET'
     })
 }
 
 export function addMarket(market, token) {
-    return fetch(`${Url}:${Port}/api/${Version}/market/`, {
+    return fetch(`${BASE_URL}/market`, {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -21,25 +19,25 @@ export function addMarket(market, token) {
 }
 
 export function getMainMarkets() {
-    return fetch(`${Url}:${Port}/api/${Version}/market?page=0&size=20`, {
+    return fetch(`${BASE_URL}/market?page=0&size=20`, {
         method: "GET"
     })
 }
 
 export function getMarketData(marketId) {
-    return fetch(`${Url}:${Port}/api/${Version}/market/${marketId}`, {
+    return fetch(`${BASE_URL}/market/${marketId}`, {
         method: "GET",
     })
 }
 
 export function getMarketGoods(marketId) {
-    return fetch(`${Url}:${Port}/api/${Version}/goods/market/${marketId}`, {
+    return fetch(`${BASE_URL}/goods/market/${marketId}`, {
         method: "GET",
     })
 }
 
 export function getUserMarket(token, ownerId) {
-    return fetch(`${Url}:${Port}/api/${Version}/market/owner/${ownerId}`, {
+    return fetch(`${BASE_URL}/market/owner/${ownerId}`, {
         method: "GET",
         headers: {
             'Accept': 'application/json',
@@ -50,7 +48,7 @@ export function getUserMarket(token, ownerId) {
 }
 
 export function editMarket(market, token) {
-    return fetch(`${Url}:${Port}/api/${Version}/market/`, {
+    return fetch(`${BASE_URL}/market/`, {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -62,7 +60,7 @@ export function editMarket(market, token) {
 }
 
 export function delMarket(token) {
-    return fetch(`${Url}:${Port}/api/${Version}/market/`, {
+    return fetch(`${BASE_URL}/market/`, {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',

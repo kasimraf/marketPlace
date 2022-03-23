@@ -1,9 +1,7 @@
-const Url = "http://localhost";
-const Port = "8080";
-const Version = 'v1'
+import {BASE_URL} from "./instance";
 
 export function getProfileData(tokenId) {
-    return fetch(`${Url}:${Port}/api/${Version}/profile`, {
+    return fetch(`${BASE_URL}/profile`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -14,7 +12,7 @@ export function getProfileData(tokenId) {
 }
 
 export function setProfileRoleAsSeller(tokenId) {
-    return fetch(`${Url}:${Port}/api/${Version}/profile/type?isSeller=true`, {
+    return fetch(`${BASE_URL}/profile/type?isSeller=true`, {
         method: "POST",
         headers: {
             'Authorization': 'Bearer ' + tokenId
