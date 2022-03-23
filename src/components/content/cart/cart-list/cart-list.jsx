@@ -9,6 +9,11 @@ import TableContainer from "@mui/material/TableContainer";
 import CartListItem from "./cart-list-item/cart-list-item";
 
 const CartList = (props) => {
+
+    function byField(field) {
+        return (a, b) => a[field] > b[field] ? 1 : -1;
+    }
+
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -22,7 +27,7 @@ const CartList = (props) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {props.goods.map((good) => {
+                    {props.goods.sort(byField('name')).map((good) => {
                         return <CartListItem key={good.id} good={good}/>
                     })}
                 </TableBody>

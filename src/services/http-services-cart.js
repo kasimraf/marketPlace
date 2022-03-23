@@ -12,7 +12,7 @@ export function getCart(token) {
 }
 
 export function addGoodToCart(goodId, token) {
-    return fetch(`${BASE_URL}/cart/goods/${goodId}?total=2`, {
+    return fetch(`${BASE_URL}/cart/goods/${goodId}?total=1`, {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ export function delGoodToCart(goodId, token) {
 
 export function setTotal(token, goodId, total) {
     return fetch(`${BASE_URL}/cart/goods/${goodId}/total/${total}`, {
-        method: "PATCH",
+        method: "PUT",
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
