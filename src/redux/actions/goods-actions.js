@@ -1,5 +1,13 @@
 import {Types} from "../action-types/action-types";
-import {addGood, delGood, editGood, getGood, getGoods, getGoodsTypes} from "../../services/http-services-goods";
+import {
+    addGood,
+    delGood,
+    editGood,
+    getGood,
+    getGoods,
+    getGoodsByType,
+    getGoodsTypes
+} from "../../services/http-services-goods";
 import {getMarketGoods} from "../../services/http-services-markets";
 
 export const getGoodsTypesAction = () => (dispatch) => {
@@ -122,5 +130,17 @@ export const getEditGoodPageDataAction = (goodId, refreshPageData) => (dispatch)
     })
 };
 
+export const getGoodsByTypeAction = (goodsTypeId) => async (dispatch) => {
+    await getGoodsByType(goodsTypeId)
+        .then(response => {
+            if (response.ok) {
+                return response.json()
+            }
+        }).then(json => {
+            dispatch({type: Types.GET_GOODS, payload: json.content})
+    })
+
+    dispatch({type: Types.LOADER_FALSE})
+}
 
 

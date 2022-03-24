@@ -52,3 +52,10 @@ export function delGood(goodId, token) {
         method: "DELETE",
     })
 }
+
+export function getGoodsByType(goodsTypeId) {
+    return fetch(`${BASE_URL}/goods/type/${goodsTypeId}`, {
+        method: "GET"
+    })
+
+}

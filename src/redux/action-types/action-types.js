@@ -3,6 +3,10 @@ export const Types = {
     AUTH_TRUE: 'AUTH_TRUE',
     AUTH_TOKEN_ID: 'AUTH_TOKEN_ID',
     GET_PROFILE_DATA: 'GET_PROFILE_DATA',
+    ClEAR_ALL_STATE: 'ClEAR_ALL_STATE',
+    //Loader
+    LOADER_TRUE: 'LOADER_TRUE',
+    LOADER_FALSE: 'LOADER_FALSE',
 
     //Markets
     GET_MARKETS_TYPES: 'GET_MARKETS_TYPES',
@@ -20,5 +24,7 @@ export const Types = {
 
     //Cart
     GET_CART: 'GET_CART'
+
+
 
 };

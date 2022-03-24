@@ -12,6 +12,9 @@ export const cart = (state = initialState, action) => {
                 cart: action.payload
             }
         }
+        case Types.ClEAR_ALL_STATE: {
+            return initialState
+        }
         default: {
             return state
         }
