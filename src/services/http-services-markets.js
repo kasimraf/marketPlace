@@ -70,3 +70,10 @@ export function delMarket(token) {
     })
 }
 
+export function getMarketsByType(marketTypeId) {
+    return fetch(`${BASE_URL}/market/type/${marketTypeId}`, {
+        method: "GET"
+    })
+
+}
+

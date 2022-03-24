@@ -33,6 +33,9 @@ export const goods = (state = initialState, action) => {
                 userGoods: action.payload
             }
         }
+        case Types.ClEAR_ALL_STATE: {
+            return initialState
+        }
         default: {
             return state
         }

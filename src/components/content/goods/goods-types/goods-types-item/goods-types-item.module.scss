@@ -17,10 +17,14 @@
 
     text-align: center;
 
-&:hover {
+    &:hover {
         background-color: darken(#eff3f6, 10%);
         cursor: pointer;
     }
+}
+
+.active {
+    background-color: darken(#eff3f6, 10%);
 }
 
 .typeImg img {

@@ -40,6 +40,9 @@ export const markets = (state = initialState, action) => {
                 userMarketData: action.payload
             }
         }
+        case Types.ClEAR_ALL_STATE: {
+            return initialState
+        }
         default: {
             return state
         }

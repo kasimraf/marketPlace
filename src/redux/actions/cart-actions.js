@@ -14,30 +14,33 @@ export const getCartAction = (token) => (dispatch) => {
     })
 };
 
-export const addGoodToCartAction = (goodId, token) => (dispatch) => {
-    addGoodToCart(goodId, token)
+export const addGoodToCartAction = (goodId, token) => async (dispatch) => {
+    await addGoodToCart(goodId, token)
         .then(response => {
             if (response.ok) {
                 dispatch(getCartAction(token))
             }
         })
+    dispatch({type: Types.LOADER_FALSE})
 }
 
-export const delGoodToCartAction = (goodId, token) => (dispatch) => {
-    delGoodToCart(goodId, token)
+export const delGoodToCartAction = (goodId, token) => async (dispatch) => {
+    await delGoodToCart(goodId, token)
         .then(response => {
             if (response.ok) {
                 dispatch(getCartAction(token))
             }
         })
+    dispatch({type: Types.LOADER_FALSE})
 }
 
-export const setTotalGoodToCartAction = (token, goodId, total) => (dispatch) => {
-    setTotal(token, goodId, total)
+export const setTotalGoodToCartAction = (token, goodId, total) => async (dispatch) => {
+    await setTotal(token, goodId, total)
         .then(response => {
             if (response.ok) {
                 dispatch(getCartAction(token))
             }
         })
+    dispatch({type: Types.LOADER_FALSE})
 }
 

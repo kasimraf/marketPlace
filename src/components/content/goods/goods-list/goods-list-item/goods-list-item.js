@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {addGoodToCartAction} from "../../../../../redux/actions/cart-actions";
 import Button from "@mui/material/Button";
+import {Types} from "../../../../../redux/action-types/action-types";
 
 const GoodsListItem = (props) => {
 
@@ -38,6 +39,7 @@ const GoodsListItem = (props) => {
                         </Link> :
                         <Button variant="contained" size="small" onClick={(e) => {
                             e.preventDefault();
+                            props.openLoader()
                             props.addToCart(props.good.id, props.token)
                         }}>Добавить в корзину</Button>
                     }
@@ -57,6 +59,9 @@ export default connect(
     dispatch => ({
         addToCart: (goodId, token) => {
             dispatch(addGoodToCartAction(goodId, token))
+        },
+        openLoader: () => {
+            dispatch({type: Types.LOADER_TRUE})
         }
     })
 )(GoodsListItem);

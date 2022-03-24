@@ -1,7 +1,5 @@
 .header {
-  width: 90vw;
-  height: 100%;
-padding-top: 10px;
+  padding-top: 10px;
   margin-bottom: 5px;
 }
 
@@ -58,9 +56,10 @@ padding-top: 10px;
 
     white-space: nowrap;
 
-    &:hover{
+    &:hover {
       color: #005bff;
     }
+
     &:focus {
       outline: none;
     }
@@ -79,6 +78,7 @@ padding-top: 10px;
     justify-content: space-around;
   }
 }
+
 //SVG styles
 
 .navBarSvg {

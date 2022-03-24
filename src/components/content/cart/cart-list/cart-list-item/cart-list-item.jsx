@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import TableRow from "@mui/material/TableRow";
 import {connect} from "react-redux";
 import {delGoodToCartAction, setTotalGoodToCartAction} from "../../../../../redux/actions/cart-actions";
+import {Types} from "../../../../../redux/action-types/action-types";
 
 const CartListItem = (props) => {
 
@@ -18,6 +19,7 @@ const CartListItem = (props) => {
 
     const editTotal = (value) => {
         if (+value !== props.good.total && Number.isInteger(+value) && +value > 0) {
+            props.openLoader()
             props.setTotal(props.token, props.good.id, value)
         } else {
             setTotal(props.good.total)
@@ -61,6 +63,7 @@ const CartListItem = (props) => {
             </TableCell>
             <TableCell align="center"><h3>{props.good.total * props.good.price}</h3></TableCell>
             <TableCell align="center"><Button onClick={() => {
+                props.openLoader()
                 props.delGood(props.good.id, props.token)
             }} color="error">Удалить</Button></TableCell>
         </TableRow>
@@ -77,6 +80,9 @@ export default connect(
         },
         setTotal: (token, goodId, total) => {
             dispatch(setTotalGoodToCartAction(token, goodId, total))
+        },
+        openLoader: () => {
+            dispatch({type: Types.LOADER_TRUE})
         }
     })
 )(CartListItem);

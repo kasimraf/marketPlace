@@ -1,9 +1,13 @@
 import {
-    addMarket, delMarket, editMarket,
+    addMarket,
+    delMarket,
+    editMarket,
     getMainMarkets,
     getMarketData,
     getMarketGoods,
-    getMarketsTypes, getUserMarket
+    getMarketsByType,
+    getMarketsTypes,
+    getUserMarket
 } from "../../services/http-services-markets";
 import {Types} from "../action-types/action-types";
 
@@ -110,6 +114,20 @@ export const delMarketAction = (token, navigate) => (dispatch) => {
             }
         })
 };
+
+export const getMarketsByTypeAction = (marketTypeId) => async (dispatch) => {
+    await getMarketsByType(marketTypeId)
+        .then(response => {
+            if (response.ok) {
+                return response.json()
+            }
+        }).then(json => {
+            dispatch({type: Types.GET_MAIN_MARKETS, payload: json.content})
+        })
+
+    dispatch({type: Types.LOADER_FALSE})
+}
+
 
 
 
