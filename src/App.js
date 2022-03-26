@@ -7,7 +7,6 @@ import Cookies from 'js-cookie'
 import {connect} from "react-redux";
 import {signInCookieTokenAction} from "./redux/actions/auth-actions";
 import Loader from "./components/loader/loader";
-import {Types} from "./redux/action-types/action-types";
 
 const App = (props) => {
 

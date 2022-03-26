@@ -23,17 +23,18 @@ export const getGoodsTypesAction = () => (dispatch) => {
     })
 };
 
-export const getGoodsAction = () => (dispatch) => {
-    getGoods()
+export const getGoodsAction = (goodsParamsPage) => async (dispatch) => {
+    await getGoods(goodsParamsPage)
         .then(response => {
             if (response.ok) {
                 return response.json();
             }
         }).then(json => {
-        dispatch({type: Types.GET_GOODS, payload: json.content});
+        dispatch({type: Types.GET_GOODS, payload: json});
     }).catch(e => {
         console.log('Не удалось подключиться к серверу')
     })
+    dispatch({type: Types.LOADER_FALSE})
 };
 
 export const getGoodPageDataAction = (goodId) => (dispatch) => {
@@ -130,16 +131,15 @@ export const getEditGoodPageDataAction = (goodId, refreshPageData) => (dispatch)
     })
 };
 
-export const getGoodsByTypeAction = (goodsTypeId) => async (dispatch) => {
-    await getGoodsByType(goodsTypeId)
+export const getGoodsByTypeAction = (goodsTypeId, goodsParamsPage) => async (dispatch) => {
+    await getGoodsByType(goodsTypeId, goodsParamsPage)
         .then(response => {
             if (response.ok) {
                 return response.json()
             }
         }).then(json => {
-            dispatch({type: Types.GET_GOODS, payload: json.content})
+            dispatch({type: Types.GET_GOODS, payload: json})
     })
-
     dispatch({type: Types.LOADER_FALSE})
 }
 

@@ -2,7 +2,7 @@ import {
     addMarket,
     delMarket,
     editMarket,
-    getMainMarkets,
+    getMarkets,
     getMarketData,
     getMarketGoods,
     getMarketsByType,
@@ -24,17 +24,18 @@ export const getMarketsTypesAction = () => (dispatch) => {
     })
 };
 
-export const getMainMarketsAction = () => (dispatch) => {
-    getMainMarkets()
+export const getMarketsAction = (marketsParamsPage) => async (dispatch) => {
+    await getMarkets(marketsParamsPage)
         .then(response => {
             if (response.ok) {
                 return response.json();
             }
         }).then(json => {
-        dispatch({type: Types.GET_MAIN_MARKETS, payload: json.content});
+        dispatch({type: Types.GET_MARKETS, payload: json});
     }).catch(e => {
         console.log('Не удалось подключиться к серверу')
     })
+    dispatch({type: Types.LOADER_FALSE})
 };
 
 export const addMarketAction = (marketData, token) => (dispatch) => {
@@ -115,14 +116,14 @@ export const delMarketAction = (token, navigate) => (dispatch) => {
         })
 };
 
-export const getMarketsByTypeAction = (marketTypeId) => async (dispatch) => {
-    await getMarketsByType(marketTypeId)
+export const getMarketsByTypeAction = (marketTypeId, marketsParamsPage) => async (dispatch) => {
+    await getMarketsByType(marketTypeId, marketsParamsPage)
         .then(response => {
             if (response.ok) {
                 return response.json()
             }
         }).then(json => {
-            dispatch({type: Types.GET_MAIN_MARKETS, payload: json.content})
+            dispatch({type: Types.GET_MARKETS, payload: json})
         })
 
     dispatch({type: Types.LOADER_FALSE})

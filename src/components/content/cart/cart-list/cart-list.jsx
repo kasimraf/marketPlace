@@ -27,7 +27,7 @@ const CartList = (props) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {props.goods.sort(byField('name')).map((good) => {
+                    {props.goods.sort(byField('id')).map((good) => {
                         return <CartListItem key={good.id} good={good}/>
                     })}
                 </TableBody>
