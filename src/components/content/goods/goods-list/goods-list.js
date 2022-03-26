@@ -2,30 +2,54 @@ import React, {useEffect} from 'react';
 import {connect} from "react-redux";
 import {getGoodsAction, getGoodsByTypeAction} from "../../../../redux/actions/goods-actions";
 import GoodsListItem from "./goods-list-item/goods-list-item";
-import style from './goods-list.module.scss'
+import styles from './goods-list.module.scss'
 import {useSearchParams} from "react-router-dom";
 import {Types} from "../../../../redux/action-types/action-types";
+import Pagination from "@mui/material/Pagination";
 
 const GoodsList = (props) => {
 
-    const [searchParams] = useSearchParams('')
+    const [searchParams, setSearchParams] = useSearchParams('')
 
-    useEffect(() => {
-        const goodsParamsType = searchParams.get('type')
+    const goodsParamsType = searchParams.get('type')
+    const goodsParamsPage = searchParams.get('page')
+
+    const checkPage = (num) => {
         if (goodsParamsType) {
             props.openLoader()
-            props.getGoodsByType(goodsParamsType)
+            setSearchParams({type: goodsParamsType, page: num})
         } else {
-            props.getGoods()
+            props.openLoader()
+            setSearchParams({page: num})
+        }
+    }
+
+    useEffect(() => {
+        if (goodsParamsType) {
+            props.openLoader()
+            props.getGoodsByType(goodsParamsType, goodsParamsPage)
+        } else {
+            props.getGoods(goodsParamsPage)
         }
     }, [searchParams]);
 
     return (
         <>
-            <div className={style.goodsList}>
-                {props.goods.map((good) => {
+            <div className={styles.goodsList}>
+                {props.goods.content?.map((good) => {
                     return <GoodsListItem key={good.id} good={good}/>
                 })}
+            </div>
+            <div className={styles.pagination}>
+                {(props.goods.totalPages > 1) ?
+                    <Pagination
+                        count={props.goods.totalPages}
+                        page={props.goods.number + 1}
+                        onChange={(_, num) => {
+                            checkPage(num)
+                        }}
+                        color="primary"/> :
+                    <></>}
             </div>
         </>
     );
@@ -36,11 +60,11 @@ export default connect(
         goods: state.goods.goods,
     }),
     dispatch => ({
-        getGoods: () => {
-            dispatch(getGoodsAction())
+        getGoods: (goodsParamsPage) => {
+            dispatch(getGoodsAction(goodsParamsPage))
         },
-        getGoodsByType: (goodsTypeId) => {
-            dispatch(getGoodsByTypeAction(goodsTypeId))
+        getGoodsByType: (goodsTypeId, goodsParamsPage) => {
+            dispatch(getGoodsByTypeAction(goodsTypeId, goodsParamsPage))
         },
         openLoader: () => {
             dispatch({type: Types.LOADER_TRUE})

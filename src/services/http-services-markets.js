@@ -18,8 +18,8 @@ export function addMarket(market, token) {
     })
 }
 
-export function getMainMarkets() {
-    return fetch(`${BASE_URL}/market?page=0&size=20`, {
+export function getMarkets(marketsParamsPage) {
+    return fetch(`${BASE_URL}/market?page=${(marketsParamsPage)?marketsParamsPage-1:0}`, {
         method: "GET"
     })
 }
@@ -70,8 +70,8 @@ export function delMarket(token) {
     })
 }
 
-export function getMarketsByType(marketTypeId) {
-    return fetch(`${BASE_URL}/market/type/${marketTypeId}`, {
+export function getMarketsByType(marketTypeId, marketsParamsPage) {
+    return fetch(`${BASE_URL}/market/type/${marketTypeId}?page=${(marketsParamsPage)?marketsParamsPage-1:0}`, {
         method: "GET"
     })
 

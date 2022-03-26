@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './market.module.scss'
 import MarketTypes from "./market-types/market-types";
-import MainMarkets from "./main-markets/main-markets";
+import MainMarkets from "./markets-list/market-list";
 
 const Markets = () => {
     return (

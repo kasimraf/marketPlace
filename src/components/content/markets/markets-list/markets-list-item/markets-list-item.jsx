@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from './main-markets-item.module.scss'
+import styles from './markets-list-item.module.scss'
 import {NavLink} from "react-router-dom";
 
-const MainMarketsItem = (props) => {
+const MarketsListItem = (props) => {
 
     return (
         <NavLink to={`/markets/${props.market.id}`} className={styles.market}>
@@ -23,4 +23,4 @@ const MainMarketsItem = (props) => {
     );
 };
 
-export default MainMarketsItem;
+export default MarketsListItem;

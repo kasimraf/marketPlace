@@ -3,9 +3,10 @@ import styles from './header.module.scss'
 import {NavLink} from "react-router-dom";
 import {connect} from "react-redux";
 import {AiOutlineUser} from 'react-icons/ai'
-import {AiOutlineShoppingCart} from 'react-icons/ai'
+import {BiBasket} from 'react-icons/bi'
 import {ImFire} from 'react-icons/im'
 import Button from "@mui/material/Button";
+import Badge from "@mui/material/Badge";
 
 const Header = (props) => {
     return (
@@ -30,8 +31,10 @@ const Header = (props) => {
                         Заказы
                     </NavLink>
                     <NavLink className={styles.profileNavBarItem} to='./cart'>
-                        <AiOutlineShoppingCart className={styles.navBarSvg}/>
-                        Корзина
+                        <Badge badgeContent={props.cart?.goods?.length} className={styles.badge} color="primary">
+                            <BiBasket className={styles.navBarSvg}/>
+                            Корзина
+                        </Badge>
                     </NavLink>
                 </div>
             </div>
@@ -52,7 +55,8 @@ const Header = (props) => {
 export default connect(
     state => ({
         authStatus: state.auth.authStatus,
-        profile: state.auth.profile
+        profile: state.auth.profile,
+        cart: state.cart.cart
     }),
     dispatch => ({})
 )(Header);
