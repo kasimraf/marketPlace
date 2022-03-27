@@ -4,6 +4,7 @@ export const Types = {
     AUTH_TOKEN_ID: 'AUTH_TOKEN_ID',
     GET_PROFILE_DATA: 'GET_PROFILE_DATA',
     ClEAR_ALL_STATE: 'ClEAR_ALL_STATE',
+
     //Loader
     LOADER_TRUE: 'LOADER_TRUE',
     LOADER_FALSE: 'LOADER_FALSE',
@@ -23,7 +24,10 @@ export const Types = {
     GET_USER_GOODS: 'GET_USER_GOODS',
 
     //Cart
-    GET_CART: 'GET_CART'
+    GET_CART: 'GET_CART',
+
+    //RECOMMENDATION
+    GET_RECOMMENDATION: 'GET_RECOMMENDATION'
 
 
 

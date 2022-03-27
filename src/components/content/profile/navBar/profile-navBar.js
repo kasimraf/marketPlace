@@ -16,9 +16,15 @@ const ProfileNavBar = (props) => {
             <div className={style.navBar}>
                 <h4>Личная информация</h4>
                 <NavLink  className={style.navBarItem} to='./'><p>Мои данные</p></NavLink>
-                <h4>Магазин</h4>
-                <NavLink className={style.navBarItem} to='./market'><p>Главная</p></NavLink>
-                <NavLink className={style.navBarItem} to='./goods'><p>Товары</p></NavLink>
+                {(props.profile.roles && props.profile.roles[0] == 'ROLE_SELLER')?
+                    <div>
+                        <h4>Магазин</h4>
+                        <NavLink className={style.navBarItem} to='./market'><p>Главная</p></NavLink>
+                        <NavLink className={style.navBarItem} to='./goods'><p>Товары</p></NavLink>
+                    </div>:
+                    <></>
+                }
+
                 <h4>Заказы</h4>
                 <NavLink className={style.navBarItem} to='/cart'><p>Моя корзина</p></NavLink>
                 <NavLink className={style.navBarItem} to='/orders'><p>Мои заказы</p></NavLink>
@@ -40,7 +46,9 @@ const ProfileNavBar = (props) => {
 };
 
 export default connect(
-    state => ({}),
+    state => ({
+        profile: state.auth.profile
+    }),
     dispatch => ({
         logOut: (Cookies) => {
             dispatch(logOutAction(Cookies))

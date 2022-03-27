@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './markets-list-item.module.scss'
-import {NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const MarketsListItem = (props) => {
 
     return (
-        <NavLink to={`/markets/${props.market.id}`} className={styles.market}>
+        <Link to={`/markets/${props.market.id}`} className={styles.market}>
             <div className={styles.titleRow}>
                 <div className={styles.photo}>
                     <img src={props.market.imageUrl} alt=""/>
@@ -19,7 +19,7 @@ const MarketsListItem = (props) => {
                     </div>
                 </div>
             </div>
-        </NavLink>
+        </Link>
     );
 };
 
