@@ -17,9 +17,19 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
 import {useNavigate} from "react-router-dom";
+import {useForm} from "react-hook-form";
+import FormHelperText from "@mui/material/FormHelperText";
 
 
 const EditMarket = (props) => {
+
+    const {
+        register,
+        formState: {errors, isValid, isDirty},
+        handleSubmit,
+    } = useForm({
+        mode: "onBlur"
+    })
 
     const [name, setName] = useState('');
     const [type, setType] = useState('');
@@ -63,12 +73,14 @@ const EditMarket = (props) => {
 
     return (
         <div>
-            <form autoComplete="off" action="" onSubmit={event => {
-                event.preventDefault();
-                editMarket()
-            }}>
+            <form autoComplete="off" action="" onSubmit={handleSubmit(editMarket)}>
                 <FormControl variant="standard" sx={{m: 1, minWidth: 120, width: '40ch'}}>
                     <TextField
+                        {...register('name', {
+                            required: "Поле обязательно к заполнению",
+                        })}
+                        error={errors?.name}
+                        helperText={errors?.name?.message || ""}
                         id="outlined-basic"
                         label="Название магазина"
                         variant="standard"
@@ -80,6 +92,15 @@ const EditMarket = (props) => {
                 </FormControl>
                 <FormControl variant="standard" sx={{m: 1, minWidth: 120, width: '40ch'}}>
                     <TextField
+                        {...register('imageUrl', {
+                            required: "Поле обязательно к заполнению",
+                            minLength: {
+                                value: 20,
+                                message: "Не менее 20ти символов"
+                            }
+                        })}
+                        error={errors?.imageUrl}
+                        helperText={errors?.imageUrl?.message || ""}
                         id="outlined-basic"
                         label="Ссылка на аву магазина"
                         variant="standard"
@@ -91,6 +112,13 @@ const EditMarket = (props) => {
                 </FormControl>
                 <FormControl variant="standard" sx={{m: 1, minWidth: 120, width: '40ch'}}>
                     <TextField
+                        {...register('description', {
+                            required: "Поле обязательно к заполнению",
+                            minLength: {
+                                value: 20,
+                                message: "Не менее 20ти символов"
+                            }
+                        })}
                         id="outlined-basic"
                         label="Описание"
                         variant="standard"
@@ -103,6 +131,11 @@ const EditMarket = (props) => {
                 <FormControl variant="standard" sx={{m: 1, minWidth: 120, width: '40ch'}}>
                     <InputLabel id="demo-simple-select-standard-label">Тип магазина</InputLabel>
                     <Select
+                        {...register('selectType', {
+                            required: "Поле обязательно к заполнению",
+                        })}
+                        error={errors?.selectType}
+                        helperText={errors?.selectType?.message || ""}
                         labelId="demo-simple-select-standard-label"
                         id="demo-simple-select-standard"
                         label="Тип магазина"
@@ -117,9 +150,10 @@ const EditMarket = (props) => {
                         {props.marketTypes.map((type) => <MenuItem key={type.id}
                                                                    value={type.id}>{type.name}</MenuItem>)}
                     </Select>
+                    <FormHelperText>{errors?.selectType?.message || ""}</FormHelperText>
                 </FormControl>
                 <FormControl variant="standard" sx={{m: 1, minWidth: 120, width: '40ch'}}>
-                    <Button type="submit" variant="contained">Изменить</Button>
+                    <Button disabled={!isDirty && !isValid} type="submit" variant="contained">Изменить</Button>
                 </FormControl>
             </form>
             <FormControl variant="standard" sx={{m: 1, minWidth: 120, width: '40ch'}}>

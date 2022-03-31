@@ -15,12 +15,14 @@ const GoodsList = (props) => {
     const goodsParamsPage = searchParams.get('page')
 
     const checkPage = (num) => {
-        if (goodsParamsType) {
-            props.openLoader()
-            setSearchParams({type: goodsParamsType, page: num})
-        } else {
-            props.openLoader()
-            setSearchParams({page: num})
+        if (num != goodsParamsPage) {
+            if (goodsParamsType) {
+                props.openLoader()
+                setSearchParams({type: goodsParamsType, page: num})
+            } else {
+                props.openLoader()
+                setSearchParams({page: num})
+            }
         }
     }
 
@@ -36,15 +38,15 @@ const GoodsList = (props) => {
     return (
         <>
             <div className={styles.goodsList}>
-                {props.goods.content?.map((good) => {
+                {props.goods?.content?.map((good) => {
                     return <GoodsListItem key={good.id} good={good}/>
                 })}
             </div>
             <div className={styles.pagination}>
-                {(props.goods.totalPages > 1) ?
+                {(props.goods?.totalPages > 1) ?
                     <Pagination
-                        count={props.goods.totalPages}
-                        page={props.goods.number + 1}
+                        count={props.goods?.totalPages}
+                        page={props.goods?.number + 1}
                         onChange={(_, num) => {
                             checkPage(num)
                         }}

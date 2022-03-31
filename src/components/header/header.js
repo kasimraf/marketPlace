@@ -7,6 +7,7 @@ import {BiBasket} from 'react-icons/bi'
 import {ImFire} from 'react-icons/im'
 import Button from "@mui/material/Button";
 import Badge from "@mui/material/Badge";
+import {CgHeart} from "react-icons/cg";
 
 const Header = (props) => {
     return (
@@ -25,6 +26,14 @@ const Header = (props) => {
                             <AiOutlineUser className={styles.navBarSvg}/>
                             <span>{props.profile.name?.split(' ')[0]}</span>
                         </NavLink>
+                    }
+                    {props.authStatus
+                        ? <NavLink className={styles.profileNavBarItem} to='favorites'>
+                            <Badge badgeContent={props.favorites?.goods?.length} className={styles.badge} color="primary">
+                                <CgHeart className={styles.navBarSvg}/>
+                                Избранное
+                            </Badge>
+                        </NavLink> : <></>
                     }
                     <NavLink className={styles.profileNavBarItem} to='./orders'>
                         <ImFire className={styles.navBarSvg}/>
@@ -56,7 +65,8 @@ export default connect(
     state => ({
         authStatus: state.auth.authStatus,
         profile: state.auth.profile,
-        cart: state.cart.cart
+        cart: state.cart.cart,
+        favorites: state.favorites.favorites
     }),
     dispatch => ({})
 )(Header);

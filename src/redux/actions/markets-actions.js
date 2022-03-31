@@ -10,6 +10,7 @@ import {
     getUserMarket
 } from "../../services/http-services-markets";
 import {Types} from "../action-types/action-types";
+import {getProfileDataAction} from "./profile-actions";
 
 export const getMarketsTypesAction = () => (dispatch) => {
     getMarketsTypes()
@@ -49,6 +50,7 @@ export const addMarketAction = (marketData, token) => (dispatch) => {
         .then(response => {
             if (response.ok) {
                 console.log('Магазин успешно добавлен')
+                dispatch(getProfileDataAction(token))
             }
         })
 };
@@ -112,6 +114,7 @@ export const delMarketAction = (token, navigate) => (dispatch) => {
             if (response.ok) {
                 console.log('Магазин успешно изменен')
                 navigate(-1)
+                dispatch(getProfileDataAction(token))
             }
         })
 };

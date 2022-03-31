@@ -4,6 +4,7 @@
   transition: transform ease-in-out .3s;
   text-decoration: none;
   color: inherit;
+  position: relative;
 }
 
 .item:hover {
@@ -22,4 +23,21 @@
 .btnContainer {
   display: flex;
   justify-content: center;
+}
+
+.favoritesBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 5px;
+  .favoritesBtnLayout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+  }
+
+  &:hover .favoritesBtnIcon {
+    color: #d32f2f;
+  }
 }

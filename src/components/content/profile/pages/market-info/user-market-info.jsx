@@ -10,11 +10,11 @@ const UserMarketInfo = (props) => {
 
     const navigate = useNavigate()
 
-    useEffect(() => {
-        props.getUserMarket(props.token, props.ownerId)
-    }, [props.ownerId, navigate])
-
     const [addMarketStatus, setAddMarketStatus] = useState(false);
+
+    useEffect(() => {
+        props.getUserMarket(props.token, props.profile.id)
+    }, [props.userMarketId])
 
     return (
         <div>
@@ -28,7 +28,7 @@ const UserMarketInfo = (props) => {
                         </button>
                     </div>
                     <div className={style.addMarketForm}>
-                        {addMarketStatus ? <AddMarket/> : <div>
+                        {addMarketStatus ? <AddMarket setAddMarketStatus={setAddMarketStatus}/> : <div>
                             <h3>У вас еще нет магазина, чтобы открыть магазин, воспользуйтесь кнопочкой выше)</h3>
                         </div>}
                     </div>
@@ -63,7 +63,7 @@ const UserMarketInfo = (props) => {
 
 export default connect(
     state => ({
-        ownerId: state.auth.profile.id,
+        profile: state.auth.profile,
         token: state.auth.tokenId,
         userMarketId: state.auth.profile.marketId,
         userMarket: state.markets.userMarketData
