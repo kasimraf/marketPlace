@@ -1,13 +1,17 @@
 .paper {
+  width: 80vw;
   display: flex;
   flex-direction: column;
   padding: 20px;
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 .goodsList {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+}
 
+.textContainer {
+  margin-top: 50px;
+  text-align: center;
 }

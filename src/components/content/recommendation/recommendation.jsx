@@ -27,10 +27,10 @@ const Recommendation = (props) => {
             <Typography className={styles.recommendationTitle} gutterBottom variant="h5" component="div">
                 TATMARKET рекомендует
             </Typography>
-            <RecommendationLikeGoods goods={props.recommendation.likeGoods}/>
-            <RecommendationLikeMarkets markets={props.recommendation.likeMarkets} />
-            <RecommendationTopGoods goods={props.recommendation.topGoods}/>
-            <RecommendationTopMarkets markets={props.recommendation.topMarkets} />
+            <RecommendationLikeGoods goods={props.recommendation?.likeGoods}/>
+            <RecommendationLikeMarkets markets={props.recommendation?.likeMarkets} />
+            <RecommendationTopGoods goods={props.recommendation?.topGoods}/>
+            <RecommendationTopMarkets markets={props.recommendation?.topMarkets} />
         </div>
     );
 };

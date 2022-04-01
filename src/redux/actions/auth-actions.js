@@ -3,6 +3,7 @@ import firebase from "firebase/compat/app";
 import {signIn, signUp} from "../../services/http-services-auth";
 import 'firebase/compat/auth';
 import {getProfileDataAction} from "./profile-actions";
+import {updateUserFavoritesWithCookiesAction} from "./favorites-actions";
 
 firebase.initializeApp({
     apiKey: "AIzaSyARIsE_fCvCoXNHS8RDd1oZjghGdjcdYE0",
@@ -22,12 +23,18 @@ export const loginAction = (navigate, Cookies) => async (dispatch) => {
     user.getIdToken().then(token => {
         signIn(token)
             .then(response => {
-                const auth = () => {
+                const auth = async () => {
+                    const favorites = Cookies.get('favorites')
+                    if (favorites) {
+                        await dispatch(updateUserFavoritesWithCookiesAction(Cookies, token))
+                    }
                     dispatch({type: Types.AUTH_TRUE})
                     dispatch({type: Types.AUTH_TOKEN_ID, payload: token})
                     dispatch(getProfileDataAction(token))
                     navigate(-1)
                     Cookies.set('tokenId', token)
+
+
                 }
                 if (response.ok) {
                     auth()

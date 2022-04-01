@@ -8,12 +8,12 @@ import {Link} from "react-router-dom";
 
 const RecommendationMarketsItem = (props) => {
     return (
-        <Link to={`/markets/${props.market.id}`} className={style.item} >
+        <Link to={`/markets/${props.market.id}`} className={style.item}>
             <Card sx={{maxWidth: 200}}>
                 <CardMedia
                     component="img"
                     height="140"
-                    image={props.market.imageUrl}
+                    image={(props.market.imageUrl.length < 10) ? 'https://elitas.ru/images/no-image-large.jpg' : props.market.imageUrl}
                     alt="green iguana"
                 />
                 <CardContent>

@@ -12,7 +12,7 @@ const GoodsTypes = (props) => {
 
     return (
         <div className={styles.types}>
-            {props.types.map((type, index) => {
+            {props.types?.map((type, index) => {
                 return <GoodsTypesItem key={index} type={type}/>
             })}
         </div>

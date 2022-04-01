@@ -15,12 +15,14 @@ const MarketList = (props) => {
     const marketsParamsPage = searchParams.get('page')
 
     const checkPage = (num) => {
-        if (marketsParamsType) {
-            props.openLoader()
-            setSearchParams({type: marketsParamsType, page: num})
-        } else {
-            props.openLoader()
-            setSearchParams({page: num})
+        if (num != marketsParamsPage) {
+            if (marketsParamsType) {
+                props.openLoader()
+                setSearchParams({type: marketsParamsType, page: num})
+            } else {
+                props.openLoader()
+                setSearchParams({page: num})
+            }
         }
     }
 
@@ -36,15 +38,15 @@ const MarketList = (props) => {
     return (
         <>
             <div className={styles.mainMarkets}>
-                {props.markets.content?.map((market) => {
+                {props.markets?.content?.map((market) => {
                     return <MarketsListItem key={market.id} market={market}/>
                 })}
             </div>
             <div className={styles.pagination}>
-                {(props.markets.totalPages > 1) ?
+                {(props.markets?.totalPages > 1) ?
                     <Pagination
-                        count={props.markets.totalPages}
-                        page={props.markets.number + 1}
+                        count={props.markets?.totalPages}
+                        page={props.markets?.number + 1}
                         onChange={(_, num) => {
                             checkPage(num)
                         }}

@@ -7,7 +7,7 @@ export function getGoodsTypes() {
 }
 
 export function getGoods(goodsParamsPage) {
-    return fetch(`${BASE_URL}/goods?page=${(goodsParamsPage)?goodsParamsPage-1:0}`, {
+    return fetch(`${BASE_URL}/goods?page=${(goodsParamsPage) ? goodsParamsPage - 1 : 0}`, {
         method: "GET"
     })
 }
@@ -54,8 +54,19 @@ export function delGood(goodId, token) {
 }
 
 export function getGoodsByType(goodsTypeId, goodsParamsPage) {
-    return fetch(`${BASE_URL}/goods/type/${goodsTypeId}?page=${(goodsParamsPage)?goodsParamsPage-1:0}`, {
+    return fetch(`${BASE_URL}/goods/type/${goodsTypeId}?page=${(goodsParamsPage) ? goodsParamsPage - 1 : 0}`, {
         method: "GET"
     })
 
+}
+
+export function getGoodsByIds(goodsIds) {
+    return fetch(`${BASE_URL}/goods/ids`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        method: "POST",
+        body: JSON.stringify(goodsIds)
+    })
 }

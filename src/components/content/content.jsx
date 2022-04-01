@@ -17,6 +17,7 @@ import EditProfileInfo from "./profile/pages/edit-profile-info/edit-profile-info
 import Cart from "./cart/cart";
 import Orders from "./orders/orders";
 import EditGood from "./profile/pages/goods/edit-good/edit-good";
+import Favorites from "./favourites/favorites";
 
 const Content = () => {
     return (
@@ -39,6 +40,7 @@ const Content = () => {
                     <Route path="add-good" element={<AddGood/>}/>
                     <Route path="edit-good/:id" element={<EditGood/>}/>
                 </Route>
+                <Route path="favorites" element={<Favorites/>}/>
             </Routes>
         </div>
     )

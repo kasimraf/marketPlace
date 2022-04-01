@@ -20,7 +20,10 @@ const ProfileNavBar = (props) => {
                     <div>
                         <h4>Магазин</h4>
                         <NavLink className={style.navBarItem} to='./market'><p>Главная</p></NavLink>
-                        <NavLink className={style.navBarItem} to='./goods'><p>Товары</p></NavLink>
+                        {(props.profile.marketId)?
+                        <div>
+                            <NavLink className={style.navBarItem} to='./goods'><p>Товары</p></NavLink>
+                        </div>:<></>}
                     </div>:
                     <></>
                 }
