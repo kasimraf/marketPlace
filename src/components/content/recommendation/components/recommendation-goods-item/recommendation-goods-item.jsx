@@ -12,8 +12,13 @@ import {Types} from "../../../../../redux/action-types/action-types";
 import {Link} from "react-router-dom";
 import {AiOutlineHeart} from "react-icons/ai";
 import IconButton from "@mui/material/IconButton";
-import {addGoodToFavoritesAction, delGoodToFavoritesAction} from "../../../../../redux/actions/favorites-actions";
+import {
+    addGoodToFavoritesAction,
+    delGoodToFavoritesAction,
+    updateFavoritesWithCookiesAction
+} from "../../../../../redux/actions/favorites-actions";
 import {AiFillHeart} from "react-icons/ai";
+import Cookies from 'js-cookie'
 
 const RecommendationGoodsItem = (props) => {
 
@@ -25,19 +30,43 @@ const RecommendationGoodsItem = (props) => {
     }
 
     useEffect(() => {
-        if (props.cart.goods?.length > 0 && props.cart.goods.some(isPositive)) {
+        if (props.cart.goods?.length > 0 && props.cart?.goods?.some(isPositive)) {
             setIsCart(true)
         }
     }, [props.cart])
 
     useEffect(() => {
-        if (props.favorites.goods?.length > 0 && props.favorites.goods.some(isPositive)) {
+        if (props.favorites?.goods?.length > 0 && props.favorites?.goods?.some(isPositive)) {
             setIsFavorites(true)
         }
         else {
             setIsFavorites(false)
         }
     }, [props.favorites])
+
+    const addFavoritesToLocalStorage = (goodId) => {
+        const cookieFavorites = Cookies.get("favorites")
+        if (cookieFavorites) {
+            const cookieFavoritesArray = JSON.parse("[" + cookieFavorites + "]")
+            cookieFavoritesArray.push(goodId)
+            Cookies.set("favorites", cookieFavoritesArray)
+            props.updateFavoritesWithCookies(cookieFavoritesArray)
+        } else {
+            Cookies.set("favorites", goodId)
+            const arr = [goodId]
+            props.updateFavoritesWithCookies(arr)
+        }
+    }
+
+    const delFavoritesToLocalStorage = (goodId) => {
+        const cookieFavorites = Cookies.get("favorites")
+        if (cookieFavorites) {
+            let cookieFavoritesArray = JSON.parse("[" + cookieFavorites + "]")
+            cookieFavoritesArray = cookieFavoritesArray.filter(function(good) { return good !== goodId })
+            Cookies.set("favorites", cookieFavoritesArray)
+            props.updateFavoritesWithCookies(cookieFavoritesArray)
+        }
+    }
 
     return (
             <Link to={`/goods/${props.good.id}`} className={style.item}>
@@ -51,21 +80,38 @@ const RecommendationGoodsItem = (props) => {
                     {props.auth ?
                         <div className={style.favoritesBtn}>
                             {(isFavorites) ?
-                            <IconButton className={style.favoritesBtnLayout} color="error" edge="false" aria-label="add to favorites" onClick={(e) => {
+                            <IconButton className={style.favoritesBtnLayout} color="error"  aria-label="add to favorites" onClick={(e) => {
                                 e.preventDefault();
                                 props.openLoader();
                                 props.delToFavorites(props.good.id, props.token);
                             }}>
                                 <AiFillHeart className={style.favoritesBtnIcon} />
                             </IconButton> :
-                            <IconButton className={style.favoritesBtnLayout} edge="false" aria-label="add to favorites" onClick={(e) => {
+                            <IconButton className={style.favoritesBtnLayout}  aria-label="add to favorites" onClick={(e) => {
                                 e.preventDefault();
                                 props.openLoader();
                                 props.addToFavorites(props.good.id, props.token);
                             }}>
                                 <AiOutlineHeart className={style.favoritesBtnIcon} />
                             </IconButton>}
-                        </div> : <></>
+                        </div>:
+                        <div className={style.favoritesBtn}>
+                            {(isFavorites) ?
+                                <IconButton className={style.favoritesBtnLayout} color="error"  aria-label="add to favorites" onClick={(e) => {
+                                    e.preventDefault();
+                                    props.openLoader();
+                                    delFavoritesToLocalStorage(props.good.id);
+                                }}>
+                                    <AiFillHeart className={style.favoritesBtnIcon} />
+                                </IconButton> :
+                                <IconButton className={style.favoritesBtnLayout}  aria-label="add to favorites" onClick={(e) => {
+                                    e.preventDefault();
+                                    props.openLoader();
+                                    addFavoritesToLocalStorage(props.good.id);
+                                }}>
+                                    <AiOutlineHeart className={style.favoritesBtnIcon} />
+                                </IconButton>}
+                        </div>
                     }
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
@@ -112,6 +158,9 @@ export default connect(
         },
         openLoader: () => {
             dispatch({type: Types.LOADER_TRUE})
+        },
+        updateFavoritesWithCookies: (goodsIds) => {
+            dispatch(updateFavoritesWithCookiesAction(goodsIds))
         }
     })
 )(RecommendationGoodsItem);

@@ -32,3 +32,15 @@ export function delGoodToFavorites(goodId, token) {
         },
     })
 }
+
+export function updateUserFavoritesWithCookies(goodsIds, token) {
+    return fetch(`${BASE_URL}/wish-list/goods/list/ids`, {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify(goodsIds)
+    })
+}

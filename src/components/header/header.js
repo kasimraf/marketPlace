@@ -27,14 +27,12 @@ const Header = (props) => {
                             <span>{props.profile.name?.split(' ')[0]}</span>
                         </NavLink>
                     }
-                    {props.authStatus
-                        ? <NavLink className={styles.profileNavBarItem} to='favorites'>
-                            <Badge badgeContent={props.favorites?.goods?.length} className={styles.badge} color="primary">
-                                <CgHeart className={styles.navBarSvg}/>
-                                Избранное
-                            </Badge>
-                        </NavLink> : <></>
-                    }
+                    <NavLink className={styles.profileNavBarItem} to='favorites'>
+                        <Badge badgeContent={props.favorites?.goods?.length} className={styles.badge} color="primary">
+                            <CgHeart className={styles.navBarSvg}/>
+                            Избранное
+                        </Badge>
+                    </NavLink>
                     <NavLink className={styles.profileNavBarItem} to='./orders'>
                         <ImFire className={styles.navBarSvg}/>
                         Заказы
@@ -50,10 +48,12 @@ const Header = (props) => {
             <div className={styles.bottomRow}>
                 <div className={styles.navBar}>
                     <div>
-                        <NavLink to="/markets" style={{"textDecoration": "none"}}><Button variant="outlined">Магазины</Button></NavLink>
+                        <NavLink to="/markets" style={{"textDecoration": "none"}}><Button
+                            variant="outlined">Магазины</Button></NavLink>
                     </div>
                     <div className={styles.navBarItem}>
-                        <NavLink to="/goods" style={{"textDecoration": "none"}}><Button variant="outlined">Список всех товаров</Button></NavLink>
+                        <NavLink to="/goods" style={{"textDecoration": "none"}}><Button variant="outlined">Список всех
+                            товаров</Button></NavLink>
                     </div>
                 </div>
             </div>

@@ -7,6 +7,7 @@ import Cookies from 'js-cookie'
 import {connect} from "react-redux";
 import {signInCookieTokenAction} from "./redux/actions/auth-actions";
 import Loader from "./components/loader/loader";
+import {updateFavoritesWithCookiesAction} from "./redux/actions/favorites-actions";
 
 const App = (props) => {
 
@@ -16,6 +17,15 @@ const App = (props) => {
             props.auth(CookiesTokenId)
         }
     }, [])
+
+    useEffect(() => {
+        const cookieFavorites = Cookies.get('favorites')
+        if (cookieFavorites) {
+            const cookieFavoritesArray = JSON.parse("[" + cookieFavorites + "]")
+            props.updateFavoritesWithCookies(cookieFavoritesArray)
+        }
+    }, [])
+
     return (
         <div className={css.app}>
             <div className={css.container}>
@@ -34,5 +44,8 @@ export default connect(
         auth: (Cookies) => {
             dispatch(signInCookieTokenAction(Cookies))
         },
+        updateFavoritesWithCookies: (goodsIds) => {
+            dispatch(updateFavoritesWithCookiesAction(goodsIds))
+        }
     })
 )(App);
