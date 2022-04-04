@@ -1,14 +1,14 @@
 import React from 'react';
 import Card from "@mui/material/Card";
-import style from "./recommendation-markets-item.module.scss";
+import styles from './markets-item.module.scss'
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import {Link} from "react-router-dom";
 
-const RecommendationMarketsItem = (props) => {
+const MarketsItem = (props) => {
     return (
-        <Link to={`/markets/${props.market.id}`} className={style.item}>
+        <Link to={`/markets/${props.market.id}`} className={styles.item}>
             <Card sx={{maxWidth: 200}}>
                 <CardMedia
                     component="img"
@@ -17,10 +17,10 @@ const RecommendationMarketsItem = (props) => {
                     alt="green iguana"
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h6" component="div" className={style.title}>
+                    <Typography gutterBottom variant="h6" component="div" className={styles.title}>
                         {props.market.name}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" className={style.description}>
+                    <Typography variant="body2" color="text.secondary" className={styles.description}>
                         {props.market.description}
                     </Typography>
                 </CardContent>
@@ -29,4 +29,4 @@ const RecommendationMarketsItem = (props) => {
     );
 };
 
-export default RecommendationMarketsItem;
+export default MarketsItem;

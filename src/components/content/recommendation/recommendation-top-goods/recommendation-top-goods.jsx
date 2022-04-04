@@ -1,8 +1,8 @@
 import React, {useEffect, useRef, useState} from 'react';
 import Typography from "@mui/material/Typography";
-import RecommendationGoodsItem from "../components/recommendation-goods-item/recommendation-goods-item";
 import Paper from "@mui/material/Paper";
 import style from './recommendation-top-goods.module.scss'
+import GoodsItem from "../../../ui-components/goods-item/goods-item";
 
 const RecommendationTopGoods = (props) => {
     const elementGoodsList = useRef()
@@ -19,7 +19,7 @@ const RecommendationTopGoods = (props) => {
             </Typography>
             <div ref={elementGoodsList} className={style.goodsList}>
                 {props.goods?.slice(0, quantityElements).map((good) => {
-                    return <RecommendationGoodsItem key={good.id} good={good}/>
+                    return <GoodsItem key={good.id} good={good}/>
                 })}
             </div>
         </Paper>
