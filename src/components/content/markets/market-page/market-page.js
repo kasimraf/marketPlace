@@ -1,15 +1,15 @@
-import React, {useEffect, useLayoutEffect} from 'react';
+import React, {useEffect} from 'react';
 import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
 import {getMarketPageDataAction} from "../../../../redux/actions/markets-actions";
 import styles from './market-page.module.scss'
-import GoodsListItem from "../../goods/goods-list/goods-list-item/goods-list-item";
+import GoodsItem from "../../../ui-components/goods-item/goods-item";
 
 const MarketPage = (props) => {
 
     const params = useParams()
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         props.getData(params.id);
     }, []);
 
@@ -61,7 +61,7 @@ const MarketPage = (props) => {
                     <h2>Cписок товаров</h2>
                     <div className={styles.goods}>
                         {props.goods.map((good) => {
-                            return <GoodsListItem  good={good}/>
+                            return <GoodsItem  good={good}/>
                         })}
                     </div>
                 </div>

@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import style from './recommendation-like-markets.module.scss'
-import RecommendationMarketsItem from "../components/recommendation-markets-item/recommendation-markets-item";
+import MarketsItem from "../../../ui-components/markets-item/markets-item";
 
 const RecommendationLikeMarkets = (props) => {
     const elementGoodsList = useRef()
@@ -19,7 +19,7 @@ const RecommendationLikeMarkets = (props) => {
             </Typography>
             <div ref={elementGoodsList} className={style.marketsList}>
                 {props.markets?.slice(0, quantityElements).map((market) => {
-                    return <RecommendationMarketsItem key={market.id} market={market}/>
+                    return <MarketsItem key={market.id} market={market}/>
                 })}
             </div>
         </Paper>

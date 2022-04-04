@@ -1,10 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import styles from './favorites.module.scss';
-import RecommendationGoodsItem from "../recommendation/components/recommendation-goods-item/recommendation-goods-item";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-import style from "../recommendation/components/recommendation-goods-item/recommendation-goods-item.module.scss";
+import GoodsItem from "../../ui-components/goods-item/goods-item";
 
 const Favorites = (props) => {
     return (
@@ -16,7 +15,7 @@ const Favorites = (props) => {
                     </Typography>
                     <div className={styles.goodsList}>
                         {props.favorites?.goods?.map((good) => {
-                            return <RecommendationGoodsItem key={good.id} good={good}/>
+                            return <GoodsItem key={good.id} good={good}/>
                         })}
                     </div>
                 </Paper>:
@@ -24,7 +23,7 @@ const Favorites = (props) => {
                     <Typography gutterBottom variant="h4" component="div">
                         В Избранном пока ничего нет
                     </Typography>
-                    <Typography variant="body1" className={style.title}>
+                    <Typography variant="body1" className={styles.title}>
                         Добавляйте товары в Избранное с помощью ❤️️
                     </Typography>
                 </div>

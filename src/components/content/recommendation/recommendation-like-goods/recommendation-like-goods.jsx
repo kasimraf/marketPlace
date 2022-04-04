@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import style from './recommendation-like-goods.module.scss'
-import RecommendationGoodsItem from "../components/recommendation-goods-item/recommendation-goods-item";
+import GoodsItem from "../../../ui-components/goods-item/goods-item";
 
 const RecommendationLikeGoods = (props) => {
     const elementGoodsList = useRef()
@@ -19,7 +19,7 @@ const RecommendationLikeGoods = (props) => {
             </Typography>
             <div ref={elementGoodsList} className={style.goodsList}>
                 {props.goods?.slice(0, quantityElements).map((good) => {
-                    return <RecommendationGoodsItem key={good.id} good={good}/>
+                    return <GoodsItem key={good.id} good={good}/>
                 })}
             </div>
         </Paper>

@@ -1,9 +1,10 @@
 .goodsList {
+  width: 80vw;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin: 15px auto;
 
-  margin-top: 15px;
   border-top: 1px solid rgba(0, 0, 0, 0.36);
   padding-top: 15px;
 }

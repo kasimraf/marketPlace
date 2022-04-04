@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import style from "./recommendation-top-markets.module.scss";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-import RecommendationMarketsItem from "../components/recommendation-markets-item/recommendation-markets-item";
+import MarketsItem from "../../../ui-components/markets-item/markets-item";
 
 const RecommendationTopMarkets = (props) => {
     const elementGoodsList = useRef()
@@ -19,7 +19,7 @@ const RecommendationTopMarkets = (props) => {
             </Typography>
             <div ref={elementGoodsList} className={style.marketsList}>
                 {props.markets?.slice(0, quantityElements).map((market) => {
-                    return <RecommendationMarketsItem key={market.id} market={market}/>
+                    return <MarketsItem key={market.id} market={market}/>
                 })}
             </div>
         </Paper>

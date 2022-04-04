@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
 import {connect} from "react-redux";
 import {getGoodsAction, getGoodsByTypeAction} from "../../../../redux/actions/goods-actions";
-import GoodsListItem from "./goods-list-item/goods-list-item";
 import styles from './goods-list.module.scss'
 import {useSearchParams} from "react-router-dom";
 import {Types} from "../../../../redux/action-types/action-types";
 import Pagination from "@mui/material/Pagination";
+import GoodsItem from "../../../ui-components/goods-item/goods-item";
 
 const GoodsList = (props) => {
 
@@ -39,7 +39,7 @@ const GoodsList = (props) => {
         <>
             <div className={styles.goodsList}>
                 {props.goods?.content?.map((good) => {
-                    return <GoodsListItem key={good.id} good={good}/>
+                    return <GoodsItem key={good.id} good={good}/>
                 })}
             </div>
             <div className={styles.pagination}>

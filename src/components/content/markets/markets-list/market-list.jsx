@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
 import {connect} from "react-redux";
 import {getMarketsAction, getMarketsByTypeAction} from "../../../../redux/actions/markets-actions";
-import MarketsListItem from "./markets-list-item/markets-list-item";
 import styles from './markets-list.module.scss'
 import {useSearchParams} from "react-router-dom";
 import {Types} from "../../../../redux/action-types/action-types";
 import Pagination from "@mui/material/Pagination";
+import MarketsItem from "../../../ui-components/markets-item/markets-item";
 
 const MarketList = (props) => {
 
@@ -39,7 +39,7 @@ const MarketList = (props) => {
         <>
             <div className={styles.mainMarkets}>
                 {props.markets?.content?.map((market) => {
-                    return <MarketsListItem key={market.id} market={market}/>
+                    return <MarketsItem key={market.id} market={market}/>
                 })}
             </div>
             <div className={styles.pagination}>
