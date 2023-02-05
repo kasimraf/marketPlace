@@ -1,0 +1,28 @@
+.item {
+  margin: 10px;
+  min-width: 200px;
+  text-decoration: none;
+
+  transition: transform ease-in-out .3s;
+  &:hover {
+    position: relative;
+    cursor: pointer;
+    transform: scale(1.1)
+  }
+}
+
+.description {
+  margin: 0;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.title {
+  margin: 0;
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

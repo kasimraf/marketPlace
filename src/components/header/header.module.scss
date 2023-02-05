@@ -1,0 +1,93 @@
+.header {
+  padding-top: 10px;
+  margin-bottom: 5px;
+}
+
+.midRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.titleBlock {
+  width: 20vw;
+}
+
+.title {
+  color: #005bff;
+  font-size: 2rem;
+  padding: 5px;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.search {
+  width: 50vw;
+
+  input {
+    width: 40vw;
+    height: 5vh;
+    border-radius: 5px;
+    outline: none;
+  }
+}
+
+.profileNavBar {
+  width: 20vw;
+  display: flex;
+  justify-content: flex-end;
+
+  .profileNavBarItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 1.8rem;
+    color: black;
+    text-decoration: none;
+    transition: color ease-in-out .3s;
+
+    white-space: nowrap;
+
+    &:hover {
+      color: #005bff;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+
+.bottomRow {
+  display: flex;
+  justify-content: center;
+  width: 95vw;
+
+  .navBar {
+    width: 80vw;
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+.badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+//SVG styles
+
+.navBarSvg {
+  width: 24px;
+  height: 24px;
+}
